@@ -1,0 +1,237 @@
+<!DOCTYPE html> <!-- Declares that this document is written in HTML5 -->
+<html lang="en"> <!-- Opens the root HTML element and sets the primary language to British/English for screen readers -->
+<head> <!-- Opens the head section containing page metadata and links to external files -->
+    <meta charset="UTF-8"> <!-- Sets the character encoding to UTF-8 so special characters like pound signs (£) display properly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the website scales responsively on mobile phones and desktop screens -->
+    <title>Bean &amp; Brew | Book a Café Table</title> <!-- Sets the page title shown in the browser tab for the Table Booking page -->
+    <link rel="stylesheet" href="styles.css"> <!-- Links our shared external CSS stylesheet (styles.css) to style the webpage -->
+</head> <!-- Closes the head section -->
+<body> <!-- Opens the body section which holds all visible content on the webpage -->
+
+    <a href="#main-content" class="skip-link">Skip to main content</a> <!-- Provides an accessibility link allowing keyboard users to jump straight to the main content -->
+
+    <header class="site-header" role="banner"> <!-- Opens the top header bar with the banner landmark role for assistive technology -->
+        <div class="header-container"> <!-- Container div that centres and spaces the header elements neatly -->
+            <div class="brand"> <!-- Grouping div for the café logo and brand tagline -->
+                <span class="brand-icon" aria-hidden="true">&#9749;</span> <!-- Displays a decorative coffee cup icon and hides it from screen readers so it isn't read aloud awkwardly -->
+                <div> <!-- Inner div to stack the café title and subtitle vertically -->
+                    <h1 class="brand-title">Bean &amp; Brew</h1> <!-- Main heading showing the client's café chain name -->
+                    <p class="brand-subtitle">Artisan Coffee, Kitchen &amp; Bakery School</p> <!-- Subtitle explaining what Bean & Brew offers -->
+                </div> <!-- Closes the inner brand text div -->
+            </div> <!-- Closes the brand grouping div -->
+
+            <div class="location-selector"> <!-- Grouping div for the café branch selector -->
+                <label for="cafe-branch" class="sr-only-mobile">Select Café Branch:</label> <!-- Accessible label linked to the branch dropdown menu -->
+                <select id="cafe-branch" name="cafe-branch" aria-label="Select your Bean and Brew café branch"> <!-- Dropdown allowing customers to choose their local Bean & Brew café -->
+                    <option value="Harrogate Central">Harrogate Central</option> <!-- First café branch option -->
+                    <option value="Leeds Corn Exchange">Leeds Corn Exchange</option> <!-- Second café branch option -->
+                    <option value="York Stonegate">York Stonegate</option> <!-- Third café branch option -->
+                </select> <!-- Closes the branch dropdown menu -->
+            </div> <!-- Closes the location selector div -->
+
+            <div class="accessibility-toolbar" role="region" aria-label="Accessibility controls"> <!-- Grouping div for our 6 accessibility adjustment buttons -->
+                <button type="button" id="contrast-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle WCAG AAA high-contrast colours -->
+                    High Contrast <!-- Visible text inside the high-contrast toggle button -->
+                </button> <!-- Closes the high-contrast toggle button -->
+                <button type="button" id="text-size-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle larger 20px base font sizes -->
+                    Large Text <!-- Visible text inside the large text toggle button -->
+                </button> <!-- Closes the large text toggle button -->
+                <button type="button" id="dyslexia-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle dyslexia-friendly font and wider letter/line spacing -->
+                    Dyslexia Font <!-- Visible text inside the dyslexia font toggle button -->
+                </button> <!-- Closes the dyslexia font toggle button -->
+                <button type="button" id="motion-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to disable animations and smooth scrolling for vestibular sensitivity -->
+                    Reduce Motion <!-- Visible text inside the reduce motion toggle button -->
+                </button> <!-- Closes the reduce motion toggle button -->
+                <button type="button" id="tts-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button that uses the browser's Web Speech API to read the page aloud -->
+                    Read Page Aloud <!-- Visible text inside the text-to-speech button -->
+                </button> <!-- Closes the text-to-speech button -->
+                <button type="button" id="reset-a11y-btn" class="a11y-btn a11y-reset-btn"> <!-- Button to reset all accessibility settings back to default -->
+                    Reset Access <!-- Visible text inside the reset accessibility button -->
+                </button> <!-- Closes the reset accessibility button -->
+            </div> <!-- Closes the accessibility toolbar div -->
+        </div> <!-- Closes the header container div -->
+
+        <nav class="main-nav" aria-label="Main Services Navigation"> <!-- Opens the primary navigation bar linking to each of the 4 pages -->
+            <ul class="nav-list"> <!-- Unordered list holding the navigation links for the four separate pages -->
+                <li class="nav-item"> <!-- List item wrapper for the Pre-Order page link -->
+                    <a href="index.html" class="nav-tab"> <!-- Link pointing to the Pre-Order Drinks & Food page (index.html) -->
+                        1. Pre-Order Drinks &amp; Food <span id="basket-badge" class="badge">0</span> <!-- Link text plus a live counter badge showing items in the basket -->
+                    </a> <!-- Closes the Pre-Order page link -->
+                </li> <!-- Closes the first list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Book a Table page link -->
+                    <a href="table.html" class="nav-tab active" aria-current="page"> <!-- Active link pointing to the current Book a Table page (table.html) -->
+                        2. Book a Table <!-- Link text for table reservations -->
+                    </a> <!-- Closes the Book a Table page link -->
+                </li> <!-- Closes the second list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Book a Baking Lesson page link -->
+                    <a href="baking.html" class="nav-tab"> <!-- Link pointing to the separate Book a Baking Lesson page (baking.html) -->
+                        3. Book a Baking Lesson <!-- Link text for baking classes -->
+                    </a> <!-- Closes the Book a Baking Lesson page link -->
+                </li> <!-- Closes the third list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Nutrition & Allergens page link -->
+                    <a href="nutrition.html" class="nav-tab"> <!-- Link pointing to the dedicated Nutrition & Allergens page (nutrition.html) -->
+                        4. Nutrition &amp; Allergens <!-- Link text for nutritional data and allergen matrix -->
+                    </a> <!-- Closes the Nutrition & Allergens page link -->
+                </li> <!-- Closes the fourth list item -->
+            </ul> <!-- Closes the navigation list -->
+        </nav> <!-- Closes the main navigation bar -->
+    </header> <!-- Closes the top site header -->
+
+    <main id="main-content" class="main-container"> <!-- Opens the main content area linked to the skip-link -->
+
+        <div id="status-banner" class="status-banner hidden" role="status" aria-live="polite"> <!-- Live notification box that announces confirmations to screen readers and users -->
+            <p id="status-message">Confirmation details will appear here.</p> <!-- Paragraph where JavaScript inserts table booking confirmation text -->
+            <button type="button" id="close-banner-btn" class="secondary-btn">Dismiss Notification</button> <!-- Button allowing the user to close the confirmation alert -->
+        </div> <!-- Closes the live status banner -->
+
+        <!-- ==================== PAGE 2: BOOK A TABLE ==================== --> <!-- Section comment marking the Table Booking page content -->
+        <section id="section-table" class="service-section" aria-labelledby="page-heading"> <!-- Opens the Book a Table content section -->
+            <div class="section-intro"> <!-- Grouping div for the table booking heading and intro text -->
+                <h2 id="page-heading">Reserve a Café Table at <span id="current-branch-label">Harrogate Central</span></h2> <!-- Main heading showing the currently selected café branch -->
+                <p>Meeting friends for weekend brunch, hosting a study group, or looking for step-free accessible dining? Explore our four café seating zones below and reserve your table online with zero booking fee.</p> <!-- Detailed description of the table booking service -->
+            </div> <!-- Closes the section intro div -->
+
+            <div class="branch-info-strip" aria-label="Branch facilities"> <!-- Displays key branch facilities for table guests -->
+                <span><strong>Wi-Fi:</strong> Free Fibre (150 Mbps)</span> <!-- Highlights high-speed Wi-Fi -->
+                <span><strong>Accessible Toilets:</strong> Radar-key &amp; baby-change on ground floor</span> <!-- Highlights accessible restroom facilities -->
+                <span><strong>Service Style:</strong> Table service &amp; large-print menus available</span> <!-- Highlights table service options -->
+            </div> <!-- Closes the branch-info-strip div -->
+
+            <div class="lessons-grid" aria-label="Café seating zones"> <!-- Grid displaying the café's seating zones so users can compare facilities -->
+                <article class="lesson-card"> <!-- Zone Card 1: Main Café Lounge -->
+                    <div class="lesson-tag">Relaxed &amp; Social</div> <!-- Badge describing the atmosphere -->
+                    <h3>Main Café Lounge</h3> <!-- Heading for the first seating zone -->
+                    <p>Bright window tables and comfortable leather armchairs overlooking the roastery bar, ideal for brunch and catch-ups.</p> <!-- Description of the Main Café Lounge -->
+                    <ul class="lesson-meta"> <!-- List of facilities for this zone -->
+                        <li><strong>Max Party Size:</strong> Up to 8 guests per table</li> <!-- Capacity detail -->
+                        <li><strong>Noise Level:</strong> Moderate café buzz &amp; acoustic panelling</li> <!-- Sensory/noise information -->
+                        <li><strong>Accessibility:</strong> Level access, movable chairs for buggies</li> <!-- Accessibility detail -->
+                    </ul> <!-- Closes the metadata list -->
+                    <button type="button" class="secondary-btn select-zone-btn" data-zone="Main Café Lounge">Choose This Seating Zone</button> <!-- Button that pre-fills the seating dropdown in the form below -->
+                </article> <!-- Closes Zone Card 1 -->
+
+                <article class="lesson-card"> <!-- Zone Card 2: Quiet Study Booths -->
+                    <div class="lesson-tag">Remote Work &amp; Study</div> <!-- Badge describing the atmosphere -->
+                    <h3>Quiet Study Booth (With Power Sockets)</h3> <!-- Heading for the second seating zone -->
+                    <p>Dedicated acoustic booths tucked away from the espresso machine with individual UK &amp; USB-C desk sockets and task lighting.</p> <!-- Description of the Quiet Study Booths -->
+                    <ul class="lesson-meta"> <!-- List of facilities for this zone -->
+                        <li><strong>Max Party Size:</strong> 1 to 4 guests per booth</li> <!-- Capacity detail -->
+                        <li><strong>Noise Level:</strong> Low-noise quiet zone (no background music)</li> <!-- Sensory/noise information -->
+                        <li><strong>Accessibility:</strong> Glare-free warm LED desk lamps</li> <!-- Accessibility detail -->
+                    </ul> <!-- Closes the metadata list -->
+                    <button type="button" class="secondary-btn select-zone-btn" data-zone="Quiet Study Booth (With Power Sockets)">Choose This Seating Zone</button> <!-- Button that pre-fills the seating dropdown in the form below -->
+                </article> <!-- Closes Zone Card 2 -->
+
+                <article class="lesson-card"> <!-- Zone Card 3: Step-Free Accessible Tables -->
+                    <div class="lesson-tag">Priority Accessibility</div> <!-- Badge describing the atmosphere -->
+                    <h3>Step-Free Accessible Ground Floor Table</h3> <!-- Heading for the third seating zone -->
+                    <p>Spacious ground-floor tables positioned near the step-free entrance and accessible washrooms with 150cm turning circles.</p> <!-- Description of the Accessible Ground Floor zone -->
+                    <ul class="lesson-meta"> <!-- List of facilities for this zone -->
+                        <li><strong>Max Party Size:</strong> Up to 6 guests (2 wheelchair bays per table)</li> <!-- Capacity detail -->
+                        <li><strong>Noise Level:</strong> Calm zone with portable induction hearing loop</li> <!-- Sensory/noise information -->
+                        <li><strong>Accessibility:</strong> 76cm knee-clearance tables &amp; Braille menus</li> <!-- Accessibility detail -->
+                    </ul> <!-- Closes the metadata list -->
+                    <button type="button" class="secondary-btn select-zone-btn" data-zone="Step-Free Accessible Ground Floor Table">Choose This Seating Zone</button> <!-- Button that pre-fills the seating dropdown in the form below -->
+                </article> <!-- Closes Zone Card 3 -->
+            </div> <!-- Closes the seating zones grid -->
+
+            <div class="form-card"> <!-- Styled card container holding the table reservation form -->
+                <h3>Complete Your Table Reservation</h3> <!-- Sub-heading for the reservation form -->
+                <form id="table-booking-form" class="booking-form"> <!-- Form for booking a table -->
+                    <div class="form-row"> <!-- Two-column row for name and email address on desktop screens -->
+                        <div class="form-group"> <!-- Wrapper for the guest's name -->
+                            <label for="table-name">Full Name <span class="required-text">(Required)</span></label> <!-- Label for the guest's name -->
+                            <input type="text" id="table-name" required placeholder="e.g. Samira Patel" autocomplete="name"> <!-- Text input for the guest's full name -->
+                        </div> <!-- Closes the guest name form group -->
+
+                        <div class="form-group"> <!-- Wrapper for the guest's email address -->
+                            <label for="table-email">Email Address <span class="required-text">(Required)</span></label> <!-- Label for the guest's email -->
+                            <input type="email" id="table-email" required placeholder="e.g. samira@example.com" autocomplete="email"> <!-- Email input with built-in format validation -->
+                        </div> <!-- Closes the guest email form group -->
+                    </div> <!-- Closes the first form row -->
+
+                    <div class="form-row"> <!-- Two-column row for phone number and visit duration -->
+                        <div class="form-group"> <!-- Wrapper for guest phone number -->
+                            <label for="table-phone">Contact Phone Number <span class="required-text">(Required)</span></label> <!-- Label for mobile number -->
+                            <input type="tel" id="table-phone" required placeholder="e.g. 07700 900456" autocomplete="tel"> <!-- Telephone input field -->
+                        </div> <!-- Closes phone number form group -->
+
+                        <div class="form-group"> <!-- Wrapper for reservation duration -->
+                            <label for="table-duration">Length of Table Stay</label> <!-- Label for stay duration -->
+                            <select id="table-duration"> <!-- Dropdown for selecting how long the table is needed -->
+                                <option value="1 Hour (Quick Coffee & Pastry)">1 Hour (Quick Coffee &amp; Pastry)</option> <!-- 1 hour option -->
+                                <option value="1.5 Hours (Standard Brunch / Lunch)" selected>1.5 Hours (Standard Brunch / Lunch)</option> <!-- Default 1.5 hour option -->
+                                <option value="2.5 Hours (Remote Study / Laptop Session)">2.5 Hours (Remote Study / Laptop Session)</option> <!-- 2.5 hour study option -->
+                            </select> <!-- Closes stay duration dropdown -->
+                        </div> <!-- Closes stay duration form group -->
+                    </div> <!-- Closes the phone/duration form row -->
+
+                    <div class="form-row"> <!-- Two-column row for date and time selection -->
+                        <div class="form-group"> <!-- Wrapper for the reservation date -->
+                            <label for="table-date">Date of Visit <span class="required-text">(Required)</span></label> <!-- Label for the booking date picker -->
+                            <input type="date" id="table-date" required> <!-- Date picker input for choosing the day of the visit -->
+                        </div> <!-- Closes the reservation date form group -->
+
+                        <div class="form-group"> <!-- Wrapper for the reservation time -->
+                            <label for="table-time">Preferred Time <span class="required-text">(Required)</span></label> <!-- Label for the preferred reservation time -->
+                            <select id="table-time" required> <!-- Dropdown list of available table sitting times -->
+                                <option value="">-- Select a time --</option> <!-- Default prompt option -->
+                                <option value="08:00 AM">08:00 AM (Early Bird Coffee)</option> <!-- Early morning slot -->
+                                <option value="09:30 AM">09:30 AM (Breakfast)</option> <!-- Morning slot 1 -->
+                                <option value="11:00 AM">11:00 AM (Brunch)</option> <!-- Morning slot 2 -->
+                                <option value="12:30 PM">12:30 PM (Lunch)</option> <!-- Afternoon slot 1 -->
+                                <option value="02:30 PM">02:30 PM (Afternoon Coffee &amp; Cake)</option> <!-- Afternoon slot 2 -->
+                                <option value="04:00 PM">04:00 PM (Late Afternoon Study)</option> <!-- Afternoon slot 3 -->
+                            </select> <!-- Closes the reservation time dropdown -->
+                        </div> <!-- Closes the reservation time form group -->
+                    </div> <!-- Closes the second form row -->
+
+                    <div class="form-row"> <!-- Two-column row for party size and seating preference -->
+                        <div class="form-group"> <!-- Wrapper for the number of guests -->
+                            <label for="table-guests">Number of Guests (1 to 8) <span class="required-text">(Required)</span></label> <!-- Label for guest count input -->
+                            <input type="number" id="table-guests" min="1" max="8" value="2" required> <!-- Number input constrained between 1 and 8 guests -->
+                        </div> <!-- Closes the number of guests form group -->
+
+                        <div class="form-group"> <!-- Wrapper for seating area preference -->
+                            <label for="table-area">Seating Preference</label> <!-- Label for choosing the seating zone -->
+                            <select id="table-area"> <!-- Dropdown for selecting indoor, window, or accessible seating -->
+                                <option value="Main Café Lounge">Main Café Lounge</option> <!-- Standard indoor seating option -->
+                                <option value="Quiet Study Booth (With Power Sockets)">Quiet Study Booth (With Power Sockets)</option> <!-- Study booth option -->
+                                <option value="Step-Free Accessible Ground Floor Table">Step-Free Accessible Ground Floor Table</option> <!-- Accessibility-focused seating option -->
+                                <option value="Covered Dog-Friendly Courtyard">Covered Dog-Friendly Courtyard</option> <!-- Outdoor courtyard seating option -->
+                            </select> <!-- Closes the seating preference dropdown -->
+                        </div> <!-- Closes the seating preference form group -->
+                    </div> <!-- Closes the third form row -->
+
+                    <div class="form-group"> <!-- Wrapper for tick-box accessibility and guest assistance options -->
+                        <label>Additional Table &amp; Accessibility Requirements (Tick any that apply)</label> <!-- Group label for accessibility checkboxes -->
+                        <div class="checkbox-grid" role="group" aria-label="Accessibility and seating requirements"> <!-- Responsive grid of checkboxes -->
+                            <label class="checkbox-label"><input type="checkbox" name="table-access" value="Wheelchair space required"> Wheelchair space required</label> <!-- Checkbox 1 -->
+                            <label class="checkbox-label"><input type="checkbox" name="table-access" value="Baby highchair needed"> Baby highchair needed</label> <!-- Checkbox 2 -->
+                            <label class="checkbox-label"><input type="checkbox" name="table-access" value="Assistance / Guide dog water bowl"> Assistance / pet dog water bowl</label> <!-- Checkbox 3 -->
+                            <label class="checkbox-label"><input type="checkbox" name="table-access" value="Large-print / Braille menu at table"> Large-print / Braille menu at table</label> <!-- Checkbox 4 -->
+                        </div> <!-- Closes checkbox-grid -->
+                    </div> <!-- Closes checkbox form-group -->
+
+                    <div class="form-group"> <!-- Wrapper for additional free-text dietary or access notes -->
+                        <label for="table-requests">Further Dietary Allergies or Special Requests (Optional)</label> <!-- Label encouraging customers to share access needs -->
+                        <textarea id="table-requests" rows="3" placeholder="e.g. Celebrating a birthday, severe peanut allergy at the table"></textarea> <!-- Multi-line text area for special requests -->
+                    </div> <!-- Closes the special requests form group -->
+
+                    <button type="submit" class="primary-btn">Confirm Table Reservation</button> <!-- Submit button to complete the table booking -->
+                </form> <!-- Closes the table booking form -->
+            </div> <!-- Closes the form card container -->
+        </section> <!-- Closes Section 2: Book a Table -->
+
+    </main> <!-- Closes the main content container -->
+
+    <footer class="site-footer" role="contentinfo"> <!-- Opens the page footer with the contentinfo landmark role -->
+        <div class="footer-container"> <!-- Container that aligns the footer text neatly -->
+            <p><strong>Bean &amp; Brew Cafés Ltd</strong> &mdash; Harrogate Central &bull; Leeds Corn Exchange &bull; York Stonegate</p> <!-- Displays the café chain name and locations -->
+            <p>Open Daily: 7:30 AM &ndash; 6:00 PM | WCAG 2.1 AA Accessible Prototype built by Mantis Solutions (T Level Digital Software Development)</p> <!-- Displays opening hours and project attribution -->
+        </div> <!-- Closes the footer container -->
+    </footer> <!-- Closes the footer element -->
+
+    <script src="script.js"></script> <!-- Loads our shared external JavaScript file (script.js) to handle interactivity -->
+</body> <!-- Closes the body element -->
+</html> <!-- Closes the HTML document -->

@@ -1,0 +1,242 @@
+<!DOCTYPE html> <!-- Declares that this document is written in HTML5 -->
+<html lang="en"> <!-- Opens the root HTML element and sets the primary language to British/English for screen readers -->
+<head> <!-- Opens the head section containing page metadata and links to external files -->
+    <meta charset="UTF-8"> <!-- Sets the character encoding to UTF-8 so special characters like pound signs (£) display properly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the website scales responsively on mobile phones and desktop screens -->
+    <title>Bean &amp; Brew | Book a Baking Lesson</title> <!-- Sets the page title shown in the browser tab for the Baking Lessons page -->
+    <link rel="stylesheet" href="styles.css"> <!-- Links our shared external CSS stylesheet (styles.css) to style the webpage -->
+</head> <!-- Closes the head section -->
+<body> <!-- Opens the body section which holds all visible content on the webpage -->
+
+    <a href="#main-content" class="skip-link">Skip to main content</a> <!-- Provides an accessibility link allowing keyboard users to jump straight to the main content -->
+
+    <header class="site-header" role="banner"> <!-- Opens the top header bar with the banner landmark role for assistive technology -->
+        <div class="header-container"> <!-- Container div that centres and spaces the header elements neatly -->
+            <div class="brand"> <!-- Grouping div for the café logo and brand tagline -->
+                <span class="brand-icon" aria-hidden="true">&#9749;</span> <!-- Displays a decorative coffee cup icon and hides it from screen readers so it isn't read aloud awkwardly -->
+                <div> <!-- Inner div to stack the café title and subtitle vertically -->
+                    <h1 class="brand-title">Bean &amp; Brew</h1> <!-- Main heading showing the client's café chain name -->
+                    <p class="brand-subtitle">Artisan Coffee, Kitchen &amp; Bakery School</p> <!-- Subtitle explaining what Bean & Brew offers -->
+                </div> <!-- Closes the inner brand text div -->
+            </div> <!-- Closes the brand grouping div -->
+
+            <div class="location-selector"> <!-- Grouping div for the café branch selector -->
+                <label for="cafe-branch" class="sr-only-mobile">Select Café Branch:</label> <!-- Accessible label linked to the branch dropdown menu -->
+                <select id="cafe-branch" name="cafe-branch" aria-label="Select your Bean and Brew café branch"> <!-- Dropdown allowing customers to choose their local Bean & Brew café -->
+                    <option value="Harrogate Central">Harrogate Central</option> <!-- First café branch option -->
+                    <option value="Leeds Corn Exchange">Leeds Corn Exchange</option> <!-- Second café branch option -->
+                    <option value="York Stonegate">York Stonegate</option> <!-- Third café branch option -->
+                </select> <!-- Closes the branch dropdown menu -->
+            </div> <!-- Closes the location selector div -->
+
+            <div class="accessibility-toolbar" role="region" aria-label="Accessibility controls"> <!-- Grouping div for our 6 accessibility adjustment buttons -->
+                <button type="button" id="contrast-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle WCAG AAA high-contrast colours -->
+                    High Contrast <!-- Visible text inside the high-contrast toggle button -->
+                </button> <!-- Closes the high-contrast toggle button -->
+                <button type="button" id="text-size-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle larger 20px base font sizes -->
+                    Large Text <!-- Visible text inside the large text toggle button -->
+                </button> <!-- Closes the large text toggle button -->
+                <button type="button" id="dyslexia-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle dyslexia-friendly font and wider letter/line spacing -->
+                    Dyslexia Font <!-- Visible text inside the dyslexia font toggle button -->
+                </button> <!-- Closes the dyslexia font toggle button -->
+                <button type="button" id="motion-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to disable animations and smooth scrolling for vestibular sensitivity -->
+                    Reduce Motion <!-- Visible text inside the reduce motion toggle button -->
+                </button> <!-- Closes the reduce motion toggle button -->
+                <button type="button" id="tts-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button that uses the browser's Web Speech API to read the page aloud -->
+                    Read Page Aloud <!-- Visible text inside the text-to-speech button -->
+                </button> <!-- Closes the text-to-speech button -->
+                <button type="button" id="reset-a11y-btn" class="a11y-btn a11y-reset-btn"> <!-- Button to reset all accessibility settings back to default -->
+                    Reset Access <!-- Visible text inside the reset accessibility button -->
+                </button> <!-- Closes the reset accessibility button -->
+            </div> <!-- Closes the accessibility toolbar div -->
+        </div> <!-- Closes the header container div -->
+
+        <nav class="main-nav" aria-label="Main Services Navigation"> <!-- Opens the primary navigation bar linking to each of the 4 pages -->
+            <ul class="nav-list"> <!-- Unordered list holding the navigation links for the four separate pages -->
+                <li class="nav-item"> <!-- List item wrapper for the Pre-Order page link -->
+                    <a href="index.html" class="nav-tab"> <!-- Link pointing to the Pre-Order Drinks & Food page (index.html) -->
+                        1. Pre-Order Drinks &amp; Food <span id="basket-badge" class="badge">0</span> <!-- Link text plus a live counter badge showing items in the basket -->
+                    </a> <!-- Closes the Pre-Order page link -->
+                </li> <!-- Closes the first list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Book a Table page link -->
+                    <a href="table.html" class="nav-tab"> <!-- Link pointing to the separate Book a Table page (table.html) -->
+                        2. Book a Table <!-- Link text for table reservations -->
+                    </a> <!-- Closes the Book a Table page link -->
+                </li> <!-- Closes the second list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Book a Baking Lesson page link -->
+                    <a href="baking.html" class="nav-tab active" aria-current="page"> <!-- Active link pointing to the current Book a Baking Lesson page (baking.html) -->
+                        3. Book a Baking Lesson <!-- Link text for baking classes -->
+                    </a> <!-- Closes the Book a Baking Lesson page link -->
+                </li> <!-- Closes the third list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Nutrition & Allergens page link -->
+                    <a href="nutrition.html" class="nav-tab"> <!-- Link pointing to the dedicated Nutrition & Allergens page (nutrition.html) -->
+                        4. Nutrition &amp; Allergens <!-- Link text for nutritional data and allergen matrix -->
+                    </a> <!-- Closes the Nutrition & Allergens page link -->
+                </li> <!-- Closes the fourth list item -->
+            </ul> <!-- Closes the navigation list -->
+        </nav> <!-- Closes the main navigation bar -->
+    </header> <!-- Closes the top site header -->
+
+    <main id="main-content" class="main-container"> <!-- Opens the main content area linked to the skip-link -->
+
+        <div id="status-banner" class="status-banner hidden" role="status" aria-live="polite"> <!-- Live notification box that announces confirmations to screen readers and users -->
+            <p id="status-message">Confirmation details will appear here.</p> <!-- Paragraph where JavaScript inserts baking lesson confirmation text -->
+            <button type="button" id="close-banner-btn" class="secondary-btn">Dismiss Notification</button> <!-- Button allowing the user to close the confirmation alert -->
+        </div> <!-- Closes the live status banner -->
+
+        <!-- ==================== PAGE 3: BOOK A BAKING LESSON ==================== --> <!-- Section comment marking the Baking Lesson page content -->
+        <section id="section-baking" class="service-section" aria-labelledby="page-heading"> <!-- Opens the Baking Lesson content section -->
+            <div class="section-intro"> <!-- Grouping div for the baking school heading and introduction -->
+                <h2 id="page-heading">Book a Hands-On Baking Lesson at <span id="current-branch-label">Harrogate Central</span></h2> <!-- Main heading for the baking workshops page -->
+                <p>Learn artisan baking skills in small groups of up to 8 students with Bean &amp; Brew's head bakers! Every workshop includes organic Yorkshire ingredients, linen aprons, laminated large-print recipe cards, and unlimited barista drinks.</p> <!-- Description of what is included in a baking lesson -->
+            </div> <!-- Closes the section intro div -->
+
+            <div class="branch-info-strip" aria-label="Bakery school accessibility highlights"> <!-- Displays key accessibility and equipment highlights -->
+                <span><strong>Class Size:</strong> Max 8 Students (Individual Workstations)</span> <!-- Shows small group size -->
+                <span><strong>Adaptive Equipment:</strong> Electric height-adjustable benches &amp; easy-grip tools</span> <!-- Highlights physical accessibility -->
+                <span><strong>Allergen Safety:</strong> Dedicated gluten-free &amp; nut-free prep bays</span> <!-- Highlights allergen safety -->
+            </div> <!-- Closes the branch-info-strip div -->
+
+            <div class="lessons-grid" aria-label="Available baking classes"> <!-- Grid displaying the available baking workshop cards -->
+                <article class="lesson-card"> <!-- Card 1: Sourdough Bread Masterclass -->
+                    <div class="lesson-tag">Beginner Friendly</div> <!-- Badge indicating the skill level -->
+                    <h3>Artisan Sourdough Masterclass</h3> <!-- Title of the first baking class -->
+                    <p>Master wild yeast starter care, autolyse, stretch-and-fold techniques, and decorative lame scoring to bake two crusty organic loaves.</p> <!-- Summary of what students learn in this class -->
+                    <ul class="lesson-meta"> <!-- List of key details about the class -->
+                        <li><strong>Duration:</strong> 3 Hours (Saturday Mornings, 9:30 AM)</li> <!-- Class duration and schedule -->
+                        <li><strong>Price:</strong> &pound;45.00 per person</li> <!-- Cost per participant -->
+                        <li><strong>Take Home:</strong> 2 baked sourdough loaves, proofing basket &amp; live 10-year starter pot</li> <!-- What students take home -->
+                        <li><strong>Allergens:</strong> Contains Wheat/Rye Gluten (100% Vegan &amp; Dairy-Free)</li> <!-- Allergen note -->
+                        <li><strong>Accessibility:</strong> Electric height-adjustable workbenches available</li> <!-- Specific accessibility feature for the workshop -->
+                    </ul> <!-- Closes the class metadata list -->
+                    <button type="button" class="secondary-btn select-lesson-btn" data-lesson="Artisan Sourdough Masterclass (£45)" data-price="45">Select This Lesson (&pound;45)</button> <!-- Button that pre-fills the booking form below with this class -->
+                </article> <!-- Closes Card 1 -->
+
+                <article class="lesson-card"> <!-- Card 2: French Croissants & Pastries -->
+                    <div class="lesson-tag">Intermediate</div> <!-- Badge indicating the skill level -->
+                    <h3>French Croissants &amp; Danish Pastries</h3> <!-- Title of the second baking class -->
+                    <p>Learn professional French butter lamination, single and double turns, and pastry shaping to craft flaky golden croissants and fruit danishes.</p> <!-- Summary of what students learn in this class -->
+                    <ul class="lesson-meta"> <!-- List of key details about the class -->
+                        <li><strong>Duration:</strong> 3.5 Hours (Sunday Mornings, 10:00 AM)</li> <!-- Class duration and schedule -->
+                        <li><strong>Price:</strong> &pound;55.00 per person</li> <!-- Cost per participant -->
+                        <li><strong>Take Home:</strong> Box of 6 butter croissants, 4 pains au chocolat &amp; French rolling pin</li> <!-- What students take home -->
+                        <li><strong>Allergens:</strong> Contains Wheat Gluten, Milk (Butter) &amp; Eggs (Vegan butter swap available)</li> <!-- Allergen note -->
+                        <li><strong>Accessibility:</strong> Printed large-print &amp; high-contrast step-by-step guides</li> <!-- Specific accessibility feature for the workshop -->
+                    </ul> <!-- Closes the class metadata list -->
+                    <button type="button" class="secondary-btn select-lesson-btn" data-lesson="French Croissants & Danish Pastries (£55)" data-price="55">Select This Lesson (&pound;55)</button> <!-- Button that pre-fills the booking form below with this class -->
+                </article> <!-- Closes Card 2 -->
+
+                <article class="lesson-card"> <!-- Card 3: Vegan & Gluten-Free Cakes -->
+                    <div class="lesson-tag">All Skill Levels &bull; Allergen Safe</div> <!-- Badge indicating the skill level -->
+                    <h3>Plant-Based &amp; Gluten-Free Baking</h3> <!-- Title of the third baking class -->
+                    <p>Bake indulgent Belgian chocolate fudge cakes, swirled cinnamon rolls, and berry scones using oat, almond-free, and gluten-free flours.</p> <!-- Summary of what students learn in this class -->
+                    <ul class="lesson-meta"> <!-- List of key details about the class -->
+                        <li><strong>Duration:</strong> 2.5 Hours (Wednesday Evenings, 6:00 PM)</li> <!-- Class duration and schedule -->
+                        <li><strong>Price:</strong> &pound;40.00 per person</li> <!-- Cost per participant -->
+                        <li><strong>Take Home:</strong> 6 cinnamon rolls, 4 scones, mini layer cake &amp; recipe booklet</li> <!-- What students take home -->
+                        <li><strong>Allergens:</strong> 100% Free from Gluten, Dairy, Eggs &amp; Nuts</li> <!-- Allergen note -->
+                        <li><strong>Accessibility:</strong> Dedicated allergen-sealed kitchen station &amp; seated prep stools</li> <!-- Specific accessibility feature for the workshop -->
+                    </ul> <!-- Closes the class metadata list -->
+                    <button type="button" class="secondary-btn select-lesson-btn" data-lesson="Plant-Based & Gluten-Free Baking (£40)" data-price="40">Select This Lesson (&pound;40)</button> <!-- Button that pre-fills the booking form below with this class -->
+                </article> <!-- Closes Card 3 -->
+
+                <article class="lesson-card"> <!-- Card 4: Barista Espresso & Latte Art -->
+                    <div class="lesson-tag">Beginner Friendly &bull; Coffee School</div> <!-- Badge indicating the skill level -->
+                    <h3>Home Barista &amp; Latte Art Workshop</h3> <!-- Title of the fourth workshop -->
+                    <p>Dial in single-origin espresso shots, master silky micro-foam texturing with dairy and barista oat milk, and pour hearts, tulips, and rosettas.</p> <!-- Summary of what students learn in this class -->
+                    <ul class="lesson-meta"> <!-- List of key details about the class -->
+                        <li><strong>Duration:</strong> 2 Hours (Friday Afternoons, 3:00 PM)</li> <!-- Class duration and schedule -->
+                        <li><strong>Price:</strong> &pound;35.00 per person</li> <!-- Cost per participant -->
+                        <li><strong>Take Home:</strong> 250g bag of Bean &amp; Brew house espresso beans &amp; steel milk pitcher</li> <!-- What students take home -->
+                        <li><strong>Allergens:</strong> Oat, Soy, Coconut &amp; Dairy milks (Decaf beans available)</li> <!-- Allergen note -->
+                        <li><strong>Accessibility:</strong> Lowered counter espresso machine &amp; tactile steam-wand guides</li> <!-- Specific accessibility feature for the workshop -->
+                    </ul> <!-- Closes the class metadata list -->
+                    <button type="button" class="secondary-btn select-lesson-btn" data-lesson="Home Barista & Latte Art Workshop (£35)" data-price="35">Select This Lesson (&pound;35)</button> <!-- Button that pre-fills the booking form below with this class -->
+                </article> <!-- Closes Card 4 -->
+            </div> <!-- Closes the baking lessons grid -->
+
+            <div class="form-card"> <!-- Styled card container holding the baking lesson registration form -->
+                <h3>Complete Your Baking Lesson Booking</h3> <!-- Sub-heading for the lesson booking form -->
+                <form id="baking-booking-form" class="booking-form"> <!-- Form for booking a baking class -->
+                    <div class="form-row"> <!-- Two-column row for participant name and email -->
+                        <div class="form-group"> <!-- Wrapper for participant's full name -->
+                            <label for="baking-name">Participant Full Name <span class="required-text">(Required)</span></label> <!-- Label for participant name -->
+                            <input type="text" id="baking-name" required placeholder="e.g. Jordan Davies" autocomplete="name"> <!-- Text input for participant name -->
+                        </div> <!-- Closes participant name form group -->
+
+                        <div class="form-group"> <!-- Wrapper for participant's email -->
+                            <label for="baking-email">Email Address <span class="required-text">(Required)</span></label> <!-- Label for participant email -->
+                            <input type="email" id="baking-email" required placeholder="e.g. jordan@example.com" autocomplete="email"> <!-- Email input field -->
+                        </div> <!-- Closes participant email form group -->
+                    </div> <!-- Closes first form row -->
+
+                    <div class="form-row"> <!-- Two-column row for choosing the workshop and session date -->
+                        <div class="form-group"> <!-- Wrapper for the chosen baking workshop -->
+                            <label for="baking-class-select">Chosen Baking Workshop <span class="required-text">(Required)</span></label> <!-- Label for the workshop dropdown -->
+                            <select id="baking-class-select" required> <!-- Dropdown menu of the four baking classes -->
+                                <option value="Artisan Sourdough Masterclass (£45)" data-price="45">Artisan Sourdough Masterclass (&pound;45 per person)</option> <!-- Option 1: Sourdough -->
+                                <option value="French Croissants & Danish Pastries (£55)" data-price="55">French Croissants &amp; Danish Pastries (&pound;55 per person)</option> <!-- Option 2: Croissants -->
+                                <option value="Plant-Based & Gluten-Free Baking (£40)" data-price="40">Plant-Based &amp; Gluten-Free Baking (&pound;40 per person)</option> <!-- Option 3: Plant-Based -->
+                                <option value="Home Barista & Latte Art Workshop (£35)" data-price="35">Home Barista &amp; Latte Art Workshop (&pound;35 per person)</option> <!-- Option 4: Barista -->
+                            </select> <!-- Closes the workshop dropdown -->
+                        </div> <!-- Closes the workshop selection form group -->
+
+                        <div class="form-group"> <!-- Wrapper for the workshop session date -->
+                            <label for="baking-date">Preferred Workshop Date <span class="required-text">(Required)</span></label> <!-- Label for the date input -->
+                            <input type="date" id="baking-date" required> <!-- Date picker input for the baking class -->
+                        </div> <!-- Closes the workshop date form group -->
+                    </div> <!-- Closes the second form row -->
+
+                    <div class="form-row"> <!-- Two-column row for number of places and experience level -->
+                        <div class="form-group"> <!-- Wrapper for number of participants -->
+                            <label for="baking-participants">Number of Places (1 to 4) <span class="required-text">(Required)</span></label> <!-- Label for number of places -->
+                            <input type="number" id="baking-participants" min="1" max="4" value="1" required> <!-- Number input allowing up to 4 places per booking -->
+                        </div> <!-- Closes the number of places form group -->
+
+                        <div class="form-group"> <!-- Wrapper for baking experience level -->
+                            <label for="baking-experience">Your Baking Experience Level</label> <!-- Label for experience dropdown -->
+                            <select id="baking-experience"> <!-- Dropdown helping instructors tailor support -->
+                                <option value="Complete Beginner">Complete Beginner (Step-by-step guidance)</option> <!-- Option 1 -->
+                                <option value="Home Enthusiast">Home Enthusiast (Some home baking experience)</option> <!-- Option 2 -->
+                                <option value="Confident Baker">Confident Baker (Looking to refine technique)</option> <!-- Option 3 -->
+                            </select> <!-- Closes experience dropdown -->
+                        </div> <!-- Closes experience form group -->
+                    </div> <!-- Closes the third form row -->
+
+                    <div class="form-group"> <!-- Wrapper for workstation accessibility checkboxes -->
+                        <label>Workstation Accessibility &amp; Sensory Adjustments (Tick any that apply)</label> <!-- Group label for workstation checkboxes -->
+                        <div class="checkbox-grid" role="group" aria-label="Bakery workstation adjustments"> <!-- Responsive grid of checkboxes -->
+                            <label class="checkbox-label"><input type="checkbox" name="baking-access" value="Height-adjustable lowered workbench"> Height-adjustable lowered workbench</label> <!-- Checkbox 1 -->
+                            <label class="checkbox-label"><input type="checkbox" name="baking-access" value="Seated prep stool at workstation"> Seated prep stool at workstation</label> <!-- Checkbox 2 -->
+                            <label class="checkbox-label"><input type="checkbox" name="baking-access" value="Large-print recipe card (18pt)"> Large-print recipe card (18pt)</label> <!-- Checkbox 3 -->
+                            <label class="checkbox-label"><input type="checkbox" name="baking-access" value="Easy-grip ergonomic utensils"> Easy-grip ergonomic utensils</label> <!-- Checkbox 4 -->
+                        </div> <!-- Closes checkbox-grid -->
+                    </div> <!-- Closes checkbox form-group -->
+
+                    <div class="form-group"> <!-- Wrapper for dietary or access adjustments -->
+                        <label for="baking-dietary">Dietary Allergies or Additional Notes (Optional)</label> <!-- Label for dietary or physical access adjustments -->
+                        <input type="text" id="baking-dietary" placeholder="e.g. Coeliac / gluten allergy, vegan butter substitute"> <!-- Text input for adjustments -->
+                    </div> <!-- Closes the adjustments form group -->
+
+                    <div class="basket-summary"> <!-- Displays the live calculated total cost for the baking lesson booking -->
+                        <span>Workshop Total to Pay (Pay on Arrival or Online):</span> <!-- Label for workshop total -->
+                        <strong id="baking-price-estimate" class="total-price">&pound;45.00</strong> <!-- Dynamically updated by script.js when workshop or places change -->
+                    </div> <!-- Closes the workshop price summary -->
+
+                    <button type="submit" class="primary-btn">Book Baking Lesson</button> <!-- Submit button to confirm the baking class booking -->
+                </form> <!-- Closes the baking lesson form -->
+            </div> <!-- Closes the baking form card -->
+        </section> <!-- Closes Section 3: Book a Baking Lesson -->
+
+    </main> <!-- Closes the main content container -->
+
+    <footer class="site-footer" role="contentinfo"> <!-- Opens the page footer with the contentinfo landmark role -->
+        <div class="footer-container"> <!-- Container that aligns the footer text neatly -->
+            <p><strong>Bean &amp; Brew Cafés Ltd</strong> &mdash; Harrogate Central &bull; Leeds Corn Exchange &bull; York Stonegate</p> <!-- Displays the café chain name and locations -->
+            <p>Open Daily: 7:30 AM &ndash; 6:00 PM | WCAG 2.1 AA Accessible Prototype built by Mantis Solutions (T Level Digital Software Development)</p> <!-- Displays opening hours and project attribution -->
+        </div> <!-- Closes the footer container -->
+    </footer> <!-- Closes the footer element -->
+
+    <script src="script.js"></script> <!-- Loads our shared external JavaScript file (script.js) to handle interactivity -->
+</body> <!-- Closes the body element -->
+</html> <!-- Closes the HTML document -->

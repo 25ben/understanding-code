@@ -1,0 +1,823 @@
+/* ==================== CSS VARIABLES (CUSTOM PROPERTIES) ==================== */
+:root { /* Targets the root HTML element to store global CSS variables for consistent colours and fonts */
+    --bg-primary: #fdfaf6; /* Sets a warm cream background colour inspired by steamed milk */
+    --bg-surface: #ffffff; /* Sets pure white for cards, forms, tables, and the basket panel */
+    --bg-subtle: #f4ece4; /* Sets a soft toasted-oat background for tags, table headers, and info boxes */
+    --bg-header: #2c1a12; /* Sets a rich dark espresso brown for the top header bar */
+    --text-primary: #1f140e; /* Sets a very dark brown-black for high-contrast readable body text */
+    --text-secondary: #5a463c; /* Sets a medium roasted-coffee brown for subtitles and helper text */
+    --accent-primary: #b85d19; /* Sets a warm caramel-copper accent colour for primary buttons and highlights */
+    --accent-hover: #8f440d; /* Sets a darker copper shade when hovering over primary buttons */
+    --border-color: #dcd0c5; /* Sets a soft latte border colour for inputs, tables, and card edges */
+    --success-bg: #e6f4ea; /* Sets a soft green background for confirmation banners and safe badges */
+    --success-border: #1e7e34; /* Sets a dark green border for confirmation banners */
+    --success-text: #0f401a; /* Sets a very dark green text colour for confirmation messages */
+    --warning-bg: #fff4e5; /* Sets a warm amber background for allergen warning badges */
+    --warning-border: #d97706; /* Sets a dark amber border for allergen alerts */
+    --warning-text: #7c2d12; /* Sets a dark brown-amber text colour for allergen notices */
+    --focus-ring: #005fcc; /* Sets a bright blue outline colour for keyboard tab focus visibility */
+    --base-font-size: 16px; /* Sets the default root font size to 16 pixels for comfortable reading */
+    --border-radius: 10px; /* Sets rounded corners across cards and buttons for a friendly modern feel */
+} /* Closes the :root variable block */
+
+/* ==================== HIGH CONTRAST ACCESSIBILITY MODE ==================== */
+body.high-contrast { /* Applies these overrides when the user clicks the High Contrast button */
+    --bg-primary: #000000; /* Changes the page background to pure black */
+    --bg-surface: #121212; /* Changes cards, tables, and panels to very dark grey-black */
+    --bg-subtle: #1f1f1f; /* Changes subtle tag and table header backgrounds to dark charcoal */
+    --bg-header: #000000; /* Keeps the header pure black */
+    --text-primary: #ffffff; /* Changes all main text to pure white for maximum contrast */
+    --text-secondary: #ffeb3b; /* Changes secondary text to bright yellow for high visibility */
+    --accent-primary: #ffeb3b; /* Changes primary buttons and highlights to bright yellow */
+    --accent-hover: #fdd835; /* Changes button hover state to golden yellow */
+    --border-color: #ffffff; /* Makes all card, table, and input borders crisp white */
+    --success-bg: #003300; /* Darkens the confirmation banner background */
+    --success-border: #00ff00; /* Makes the confirmation border bright neon green */
+    --success-text: #ffffff; /* Makes confirmation text pure white */
+    --warning-bg: #332200; /* Darkens the allergen warning badge background */
+    --warning-border: #ffcc00; /* Makes allergen border bright gold */
+    --warning-text: #ffeb3b; /* Makes allergen text bright yellow */
+    --focus-ring: #00ffff; /* Changes keyboard focus outline to bright cyan */
+} /* Closes the high-contrast mode block */
+
+/* ==================== LARGE TEXT ACCESSIBILITY MODE ==================== */
+html.large-text { /* Applies when the user activates the Large Text accessibility toggle */
+    font-size: 20px; /* Increases the root font size from 16px to 20px so all rem units scale up */
+} /* Closes the large-text mode block */
+
+/* ==================== DYSLEXIA-FRIENDLY ACCESSIBILITY MODE ==================== */
+body.dyslexia-mode { /* Applies when the user activates the Dyslexia Friendly toggle */
+    font-family: 'Comic Sans MS', 'Trebuchet MS', Verdana, Arial, sans-serif !important; /* Uses rounded, distinct letterforms that reduce letter mirroring */
+    letter-spacing: 0.05em; /* Increases space between individual letters to prevent visual crowding */
+    word-spacing: 0.14em; /* Increases space between words for easier eye tracking */
+    line-height: 1.85; /* Widens vertical spacing between lines of text */
+} /* Closes the dyslexia-mode block */
+
+/* ==================== REDUCE MOTION ACCESSIBILITY MODE ==================== */
+body.reduce-motion *, /* Targets every element on the page when Reduce Motion is enabled */
+body.reduce-motion { /* Also targets the body and root scrolling behaviour */
+    transition: none !important; /* Disables all CSS colour and size fade transitions */
+    animation: none !important; /* Disables any CSS keyframe animations */
+    scroll-behavior: auto !important; /* Replaces smooth scrolling with instant jumps to prevent motion sickness */
+} /* Closes the reduce-motion block */
+
+/* ==================== GLOBAL RESET & TYPOGRAPHY ==================== */
+* { /* Targets every single element on the page */
+    box-sizing: border-box; /* Ensures padding and borders are included inside element widths and heights */
+    margin: 0; /* Removes default browser outer margins */
+    padding: 0; /* Removes default browser inner padding */
+} /* Closes the universal selector block */
+
+html { /* Targets the root HTML tag */
+    font-size: var(--base-font-size); /* Applies the base font size variable */
+    scroll-behavior: smooth; /* Enables smooth scrolling when jumping to page sections */
+} /* Closes the html selector block */
+
+body { /* Targets the document body */
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; /* Uses clean, legible system sans-serif fonts */
+    background-color: var(--bg-primary); /* Sets the background colour using our CSS variable */
+    color: var(--text-primary); /* Sets the text colour using our CSS variable */
+    line-height: 1.6; /* Sets generous line spacing to improve readability for dyslexic and low-vision users */
+    min-height: 100vh; /* Ensures the body is at least as tall as the full browser viewport */
+    display: flex; /* Uses Flexbox so the footer stays pushed to the bottom of the screen */
+    flex-direction: column; /* Stacks header, main content, and footer vertically */
+} /* Closes the body selector block */
+
+/* ==================== KEYBOARD FOCUS & SKIP LINK (ACCESSIBILITY) ==================== */
+*:focus-visible { /* Styles any interactive element when navigated to using the Tab key */
+    outline: 3px solid var(--focus-ring); /* Draws a thick 3px solid focus ring around the active control */
+    outline-offset: 2px; /* Adds a 2px gap between the element and the focus outline */
+} /* Closes the focus-visible block */
+
+.skip-link { /* Styles the hidden 'Skip to main content' link at the top of the page */
+    position: absolute; /* Takes the link out of normal layout flow */
+    top: -100px; /* Hides the link above the top edge of the screen until focused */
+    left: 1rem; /* Positions the link 1rem from the left edge */
+    background: var(--accent-primary); /* Gives the link a high-visibility background colour */
+    color: #ffffff; /* Sets the text colour to white */
+    padding: 0.75rem 1.25rem; /* Adds comfortable padding around the link text */
+    font-weight: 700; /* Makes the text bold */
+    text-decoration: none; /* Removes the default underline */
+    border-radius: 0 0 var(--border-radius) var(--border-radius); /* Rounds the bottom corners */
+    z-index: 1000; /* Ensures the skip link appears on top of all other elements */
+} /* Closes the skip-link block */
+
+.skip-link:focus { /* Triggers when a keyboard user presses Tab and focuses the skip link */
+    top: 0; /* Brings the skip link into view at the very top of the screen */
+} /* Closes the skip-link:focus block */
+
+/* ==================== HEADER & EXPANDED ACCESSIBILITY TOOLBAR ==================== */
+.site-header { /* Styles the main top header banner */
+    background-color: var(--bg-header); /* Applies the dark espresso background colour */
+    color: #ffffff; /* Sets header text to white */
+    border-bottom: 4px solid var(--accent-primary); /* Adds a warm copper accent bar along the bottom edge */
+} /* Closes the site-header block */
+
+.header-container { /* Styles the inner layout container of the header */
+    max-width: 1200px; /* Restricts maximum width on large desktop monitors */
+    margin: 0 auto; /* Centres the container horizontally */
+    padding: 1rem 1.25rem; /* Adds top/bottom and left/right breathing room */
+    display: flex; /* Uses Flexbox to align brand, branch selector, and accessibility buttons */
+    flex-wrap: wrap; /* Allows items to wrap onto new lines on smaller mobile screens */
+    justify-content: space-between; /* Spaces the header groups evenly across the width */
+    align-items: center; /* Vertically centres all items in the header */
+    gap: 1rem; /* Adds a 1rem gap between wrapped items */
+} /* Closes the header-container block */
+
+.brand { /* Styles the logo and brand title wrapper */
+    display: flex; /* Aligns the coffee icon and text side by side */
+    align-items: center; /* Centres the icon vertically next to the text */
+    gap: 0.75rem; /* Adds space between the coffee icon and the brand name */
+} /* Closes the brand block */
+
+.brand-icon { /* Styles the decorative coffee cup symbol */
+    font-size: 2.2rem; /* Makes the coffee cup icon large and clear */
+} /* Closes the brand-icon block */
+
+.brand-title { /* Styles the main Bean & Brew heading */
+    font-size: 1.6rem; /* Sets a prominent heading size */
+    letter-spacing: 0.5px; /* Slightly increases spacing between letters */
+} /* Closes the brand-title block */
+
+.brand-subtitle { /* Styles the tagline below the brand title */
+    font-size: 0.9rem; /* Uses a slightly smaller font size for the subtitle */
+    color: #e6d7cc; /* Uses a soft latte cream colour for contrast against the dark header */
+} /* Closes the brand-subtitle block */
+
+.location-selector { /* Styles the café branch dropdown container */
+    display: flex; /* Aligns the label and select dropdown in a row */
+    align-items: center; /* Centres the label and dropdown vertically */
+    gap: 0.5rem; /* Adds spacing between the label and dropdown */
+    font-weight: 600; /* Makes the label semi-bold */
+} /* Closes the location-selector block */
+
+.location-selector select { /* Styles the branch selector dropdown box */
+    padding: 0.5rem 0.75rem; /* Adds comfortable click target padding */
+    border-radius: var(--border-radius); /* Rounds the corners of the dropdown */
+    border: 2px solid var(--accent-primary); /* Adds a copper border to make it stand out */
+    background-color: var(--bg-surface); /* Sets the dropdown background colour */
+    color: var(--text-primary); /* Sets the dropdown text colour */
+    font-size: 0.95rem; /* Sets a legible font size */
+    font-weight: 600; /* Makes the selected branch name bold */
+    cursor: pointer; /* Shows a pointer hand icon on hover */
+} /* Closes the location-selector select block */
+
+.accessibility-toolbar { /* Styles the toolbar holding our 6 accessibility controls */
+    display: flex; /* Places the accessibility buttons in a flexible row */
+    flex-wrap: wrap; /* Allows buttons to wrap neatly on smaller screens */
+    gap: 0.45rem; /* Adds space between each accessibility button */
+    align-items: center; /* Vertically aligns all buttons */
+} /* Closes the accessibility-toolbar block */
+
+.a11y-btn { /* Styles individual accessibility toggle buttons */
+    background-color: transparent; /* Keeps background transparent by default */
+    color: #ffffff; /* Uses white text inside the dark header */
+    border: 2px solid #ffffff; /* Adds a crisp white border */
+    padding: 0.4rem 0.75rem; /* Adds padding for an easy touch target on mobile and desktop */
+    border-radius: var(--border-radius); /* Rounds button corners */
+    font-size: 0.82rem; /* Sets a neat, compact font size */
+    font-weight: 600; /* Makes button labels semi-bold */
+    cursor: pointer; /* Shows pointer cursor when hovering */
+    transition: background-color 0.2s, color 0.2s; /* Smoothly animates colour changes */
+} /* Closes the a11y-btn block */
+
+.a11y-btn[aria-pressed="true"], /* Styles accessibility buttons when toggled ON */
+.a11y-btn:hover { /* Also applies when hovered with a mouse */
+    background-color: #ffffff; /* Fills the button with white */
+    color: #000000; /* Changes button text to black for strong contrast */
+} /* Closes the active/hover accessibility button block */
+
+.a11y-reset-btn { /* Styles the 'Reset Access' button in the toolbar */
+    border-color: #f3c6a5; /* Uses a soft copper-cream border to distinguish reset from toggles */
+    color: #f3c6a5; /* Matches text colour to the soft copper border */
+} /* Closes the a11y-reset-btn block */
+
+/* ==================== MAIN NAVIGATION TABS (4 PAGES) ==================== */
+.main-nav { /* Styles the navigation bar directly below the top header */
+    background-color: #3d251b; /* Uses a slightly lighter cocoa brown to distinguish the tab bar */
+} /* Closes the main-nav block */
+
+.nav-list { /* Styles the unordered list containing the four page navigation links */
+    max-width: 1200px; /* Matches the 1200px max width of the page container */
+    margin: 0 auto; /* Centres the navigation bar horizontally */
+    list-style: none; /* Removes bullet points from the list */
+    display: flex; /* Arranges the four page links horizontally on desktop */
+} /* Closes the nav-list block */
+
+.nav-item { /* Styles each list item in the navigation bar */
+    flex: 1; /* Gives each of the service page links equal width */
+} /* Closes the nav-item block */
+
+.nav-tab { /* Styles the clickable navigation page links */
+    width: 100%; /* Stretches the link to fill its list item container */
+    height: 100%; /* Ensures all navigation links match height */
+    padding: 0.95rem 0.75rem; /* Provides a generous touch target height (minimum 48px for mobile accessibility) */
+    background: transparent; /* Makes inactive navigation links transparent */
+    color: #f3e9e1; /* Sets inactive link text to warm off-white */
+    border: none; /* Removes default borders */
+    border-bottom: 4px solid transparent; /* Reserves space for the bottom active indicator bar */
+    font-size: 0.98rem; /* Uses clear font size for legibility */
+    font-weight: 700; /* Makes navigation titles bold */
+    text-decoration: none; /* Removes the default browser underline from navigation links */
+    cursor: pointer; /* Changes cursor to a hand pointer */
+    display: flex; /* Uses Flexbox to align link text and the basket counter badge */
+    justify-content: center; /* Centres link content horizontally */
+    align-items: center; /* Centres link content vertically */
+    text-align: center; /* Centres wrapped text on medium screens */
+    gap: 0.5rem; /* Adds space between link label and basket badge */
+    transition: background-color 0.2s, border-color 0.2s; /* Smoothly transitions hover and active states */
+} /* Closes the nav-tab block */
+
+.nav-tab:hover { /* Styles navigation tabs when hovered */
+    background-color: rgba(255, 255, 255, 0.1); /* Adds a subtle light overlay on hover */
+} /* Closes the nav-tab:hover block */
+
+.nav-tab.active { /* Styles the currently active page link */
+    background-color: var(--bg-primary); /* Matches the main page background so the tab looks connected */
+    color: var(--text-primary); /* Switches text colour to the main dark body colour */
+    border-bottom-color: var(--accent-primary); /* Highlights the bottom border with the copper accent */
+} /* Closes the nav-tab.active block */
+
+.badge { /* Styles the circular item count badge on the Pre-Order link */
+    background-color: var(--accent-primary); /* Fills the badge with the accent colour */
+    color: #ffffff; /* Uses white text inside the badge */
+    padding: 0.15rem 0.55rem; /* Shapes the badge into a neat pill */
+    border-radius: 999px; /* Rounds corners completely into a circle/pill */
+    font-size: 0.85rem; /* Slightly smaller font size for the counter number */
+} /* Closes the badge block */
+
+body.high-contrast .badge, /* Targets the badge and primary buttons when High Contrast mode is active */
+body.high-contrast .primary-btn { /* Ensures black text on bright yellow buttons in High Contrast mode */
+    color: #000000; /* Sets text to pure black so it is readable on yellow */
+} /* Closes the high-contrast badge/button override block */
+
+/* ==================== MAIN CONTENT CONTAINER & STATUS BANNER ==================== */
+.main-container { /* Styles the central wrapper holding page content */
+    max-width: 1200px; /* Caps width at 1200px on wide screens */
+    width: 100%; /* Ensures it takes up 100% width on smaller screens */
+    margin: 0 auto; /* Centres the main content area */
+    padding: 2rem 1.25rem; /* Adds spacing around the content */
+    flex: 1; /* Allows main content to expand and push the footer down */
+} /* Closes the main-container block */
+
+.hidden { /* Utility class used by JavaScript to hide inactive banners or filtered elements */
+    display: none !important; /* Completely hides the element from visual layout and screen readers */
+} /* Closes the hidden utility class */
+
+.status-banner { /* Styles the confirmation alert box shown after placing an order or booking */
+    background-color: var(--success-bg); /* Applies soft green background */
+    border: 2px solid var(--success-border); /* Applies dark green border */
+    color: var(--success-text); /* Applies dark green text colour */
+    padding: 1.25rem; /* Adds internal spacing */
+    border-radius: var(--border-radius); /* Rounds the banner corners */
+    margin-bottom: 1.75rem; /* Adds space below the banner before the section content */
+    display: flex; /* Aligns confirmation message and dismiss button in a row */
+    justify-content: space-between; /* Pushes the dismiss button to the far right */
+    align-items: center; /* Centres text and button vertically */
+    flex-wrap: wrap; /* Allows wrapping on narrow phone screens */
+    gap: 1rem; /* Adds space between message and button when wrapped */
+    font-weight: 600; /* Makes confirmation text semi-bold */
+} /* Closes the status-banner block */
+
+.section-intro { /* Styles the heading and intro paragraph at the top of each page */
+    margin-bottom: 1.5rem; /* Adds spacing below the intro text */
+} /* Closes the section-intro block */
+
+.section-intro h2 { /* Styles the main page heading */
+    font-size: 1.75rem; /* Makes the section title prominent */
+    margin-bottom: 0.4rem; /* Adds a small gap below the heading */
+} /* Closes the section-intro h2 block */
+
+.section-intro p { /* Styles the descriptive helper paragraph under the heading */
+    color: var(--text-secondary); /* Uses the secondary roasted-coffee text colour */
+} /* Closes the section-intro p block */
+
+/* ==================== INFO STRIP & BRANCH HIGHLIGHTS ==================== */
+.branch-info-strip { /* Styles the informational strip showing branch address, Wi-Fi, and access info */
+    background-color: var(--bg-subtle); /* Uses soft oat background colour */
+    border: 1px solid var(--border-color); /* Adds a subtle border */
+    border-radius: var(--border-radius); /* Rounds the corners */
+    padding: 0.9rem 1.25rem; /* Adds comfortable inner padding */
+    margin-bottom: 1.5rem; /* Separates the strip from the controls below */
+    display: flex; /* Aligns branch details in a responsive row */
+    flex-wrap: wrap; /* Wraps items neatly on smaller screens */
+    justify-content: space-between; /* Spreads items evenly across the strip */
+    gap: 0.75rem; /* Adds space between info items */
+    font-size: 0.9rem; /* Uses a clean, compact text size */
+} /* Closes the branch-info-strip block */
+
+/* ==================== PRE-ORDER FILTER BAR, SEARCH & MENU CARDS ==================== */
+.controls-row { /* Wraps category filter buttons and search/dietary controls */
+    display: flex; /* Aligns filter bar and search box in a flexible row */
+    flex-wrap: wrap; /* Wraps onto multiple lines on smaller screens */
+    justify-content: space-between; /* Pushes filters left and search box right */
+    align-items: center; /* Vertically aligns buttons and search input */
+    gap: 1rem; /* Adds spacing between filter buttons and search input */
+    margin-bottom: 1.5rem; /* Adds space above the menu grid */
+} /* Closes the controls-row block */
+
+.filter-bar { /* Styles the row of category filter buttons */
+    display: flex; /* Places filter buttons in a horizontal row */
+    flex-wrap: wrap; /* Wraps buttons onto multiple lines on small phone screens */
+    gap: 0.6rem; /* Adds space between filter buttons */
+} /* Closes the filter-bar block */
+
+.filter-btn { /* Styles each category filter button */
+    padding: 0.55rem 1.1rem; /* Gives comfortable touch target padding */
+    border: 2px solid var(--border-color); /* Adds a subtle border */
+    background-color: var(--bg-surface); /* Sets white surface background */
+    color: var(--text-primary); /* Sets dark text colour */
+    border-radius: 999px; /* Creates pill-shaped filter buttons */
+    font-size: 0.92rem; /* Sets readable font size */
+    font-weight: 600; /* Makes button text semi-bold */
+    cursor: pointer; /* Shows hand cursor on hover */
+    transition: all 0.2s; /* Smoothly animates colour changes */
+} /* Closes the filter-btn block */
+
+.filter-btn.active, /* Styles the currently selected category filter button */
+.filter-btn:hover { /* Also styles filter buttons on hover */
+    background-color: var(--accent-primary); /* Fills with the warm copper accent colour */
+    border-color: var(--accent-primary); /* Matches the border colour to the fill */
+    color: #ffffff; /* Changes text colour to white */
+} /* Closes the active/hover filter button block */
+
+body.high-contrast .filter-btn.active, /* Targets active filter buttons in High Contrast mode */
+body.high-contrast .filter-btn:hover { /* Ensures high contrast readability when hovered */
+    color: #000000; /* Uses black text on the bright yellow background */
+} /* Closes the high-contrast filter button override */
+
+.search-box-wrapper { /* Styles the container for the live menu/nutrition search input */
+    display: flex; /* Aligns label and search input */
+    align-items: center; /* Vertically centres the search input */
+    gap: 0.5rem; /* Adds space between label and input */
+    flex: 1; /* Allows search box to grow comfortably */
+    min-width: 240px; /* Ensures search box never gets too narrow */
+    max-width: 360px; /* Caps search box width on desktop */
+} /* Closes the search-box-wrapper block */
+
+.search-input { /* Styles the text search input box */
+    width: 100%; /* Fills the search wrapper width */
+    padding: 0.6rem 0.9rem; /* Adds comfortable inner padding */
+    border: 2px solid var(--border-color); /* Adds a clear 2px border */
+    border-radius: 999px; /* Rounds into a modern pill-shaped search bar */
+    background-color: var(--bg-surface); /* Uses crisp surface background */
+    color: var(--text-primary); /* Uses primary text colour */
+    font-size: 0.95rem; /* Prevents mobile auto-zoom */
+} /* Closes the search-input block */
+
+.order-layout { /* Styles the two-column layout holding the menu grid and basket sidebar */
+    display: grid; /* Uses CSS Grid for layout */
+    grid-template-columns: 2fr 1fr; /* Gives 2/3 width to the menu and 1/3 width to the basket on desktop */
+    gap: 2rem; /* Adds a 2rem gap between the menu and basket columns */
+    align-items: start; /* Prevents the basket from stretching vertically to match the menu height */
+} /* Closes the order-layout block */
+
+.menu-grid { /* Styles the grid of individual drink and food cards */
+    display: grid; /* Uses CSS Grid to arrange menu cards */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* Automatically fits responsive columns at least 260px wide */
+    gap: 1.25rem; /* Adds space between menu cards */
+} /* Closes the menu-grid block */
+
+.menu-card { /* Styles each drink or bakery item card */
+    background-color: var(--bg-surface); /* Sets a crisp white background */
+    border: 2px solid var(--border-color); /* Adds a clear card border */
+    border-radius: var(--border-radius); /* Rounds the corners of the card */
+    padding: 1.25rem; /* Adds internal padding inside the card */
+    display: flex; /* Uses Flexbox to stack card contents vertically */
+    flex-direction: column; /* Stacks title, description, nutrition tags, options, and button top-to-bottom */
+    justify-content: space-between; /* Pushes the 'Add to Order' button to the bottom of the card */
+    gap: 0.85rem; /* Adds vertical spacing between card elements */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04); /* Adds a gentle shadow for visual depth */
+} /* Closes the menu-card block */
+
+.menu-card-header { /* Styles the top row of a menu card (icon + price) */
+    display: flex; /* Places the emoji icon and price side by side */
+    justify-content: space-between; /* Pushes icon to the left and price to the right */
+    align-items: center; /* Vertically aligns the icon and price */
+} /* Closes the menu-card-header block */
+
+.item-icon { /* Styles the visual food/drink icon on each card */
+    font-size: 2rem; /* Makes the icon large and friendly */
+} /* Closes the item-icon block */
+
+.item-price { /* Styles the price badge on each menu card */
+    font-size: 1.2rem; /* Makes the price easy to spot */
+    font-weight: 700; /* Makes the price bold */
+    color: var(--accent-primary); /* Highlights the price in our accent colour */
+} /* Closes the item-price block */
+
+.menu-card h3 { /* Styles the name of the drink or food item */
+    font-size: 1.15rem; /* Sets a clear heading size for the item title */
+    margin-bottom: 0.2rem; /* Adds a tiny gap below the heading */
+} /* Closes the menu-card h3 block */
+
+.menu-card p { /* Styles the item description */
+    font-size: 0.9rem; /* Uses a slightly smaller font size for description text */
+    color: var(--text-secondary); /* Applies the secondary text colour */
+} /* Closes the menu-card p block */
+
+.badge-row { /* Wraps dietary, calorie, caffeine, and allergen pills inside cards */
+    display: flex; /* Aligns badges in a row */
+    flex-wrap: wrap; /* Wraps badges onto multiple lines if needed */
+    gap: 0.35rem; /* Adds space between badges */
+    margin-top: 0.45rem; /* Separates badges from the description paragraph */
+} /* Closes the badge-row block */
+
+.meta-pill { /* Styles individual nutrition/dietary badges (e.g. 160 kcal, Vegan) */
+    background-color: var(--bg-subtle); /* Soft oat pill background */
+    border: 1px solid var(--border-color); /* Subtle border */
+    color: var(--text-primary); /* Readable dark text */
+    font-size: 0.76rem; /* Compact badge text size */
+    font-weight: 600; /* Semi-bold label */
+    padding: 0.15rem 0.55rem; /* Compact pill padding */
+    border-radius: 999px; /* Fully rounded pill corners */
+} /* Closes the meta-pill block */
+
+.dietary-pill { /* Styles positive dietary badges like Vegan or Gluten-Free Option */
+    background-color: var(--success-bg); /* Soft green background */
+    border: 1px solid var(--success-border); /* Green border */
+    color: var(--success-text); /* Dark green text */
+    font-size: 0.76rem; /* Compact badge text size */
+    font-weight: 700; /* Bold label */
+    padding: 0.15rem 0.55rem; /* Compact pill padding */
+    border-radius: 999px; /* Rounded pill corners */
+} /* Closes the dietary-pill block */
+
+.allergen-pill { /* Styles allergen warning badges so customers can spot allergens immediately */
+    background-color: var(--warning-bg); /* Warm amber warning background */
+    border: 1px solid var(--warning-border); /* Amber border */
+    color: var(--warning-text); /* Dark amber text */
+    font-size: 0.76rem; /* Compact font size */
+    font-weight: 700; /* Bold text so it is clear without relying on colour alone */
+    padding: 0.15rem 0.55rem; /* Pill padding */
+    border-radius: 999px; /* Rounded pill corners */
+} /* Closes the allergen-pill block */
+
+.item-origin { /* Styles the bean origin / prep time note on menu cards */
+    font-size: 0.8rem; /* Small helper text size */
+    color: var(--text-secondary); /* Secondary text colour */
+    margin-top: 0.4rem; /* Space above origin note */
+    display: flex; /* Aligns origin text and nutrition link */
+    justify-content: space-between; /* Pushes nutrition link to the right */
+    align-items: center; /* Vertically centres items */
+    flex-wrap: wrap; /* Wraps cleanly on narrow cards */
+    gap: 0.4rem; /* Space between text and link */
+} /* Closes the item-origin block */
+
+.nutrition-link { /* Styles the 'Nutrition & Allergens ->' link on menu cards */
+    color: var(--accent-primary); /* Uses primary copper accent colour */
+    font-weight: 700; /* Bold link text */
+    text-decoration: underline; /* Clear underline for accessibility */
+    font-size: 0.8rem; /* Compact font size */
+} /* Closes the nutrition-link block */
+
+.customise-group { /* Styles the customisation dropdown wrapper inside each menu card */
+    display: flex; /* Stacks the customisation label and select box */
+    flex-direction: column; /* Aligns label directly above the dropdown */
+    gap: 0.3rem; /* Adds a small gap between label and dropdown */
+    font-size: 0.85rem; /* Sets a compact font size for the option label */
+    font-weight: 600; /* Makes the customisation label semi-bold */
+} /* Closes the customise-group block */
+
+.customise-group select { /* Styles the milk/warming dropdown inside a menu card */
+    padding: 0.5rem; /* Adds comfortable inner padding */
+    border: 1px solid var(--border-color); /* Adds a border around the select box */
+    border-radius: 6px; /* Slightly rounds the select box corners */
+    background-color: var(--bg-primary); /* Gives a subtle cream background to the dropdown */
+    color: var(--text-primary); /* Sets text colour */
+    font-size: 0.9rem; /* Sets legible text size */
+} /* Closes the customise-group select block */
+
+/* ==================== BASKET SIDEBAR PANEL ==================== */
+.basket-panel { /* Styles the collection basket panel on the right side of the screen */
+    background-color: var(--bg-surface); /* Sets a clean white surface background */
+    border: 2px solid var(--border-color); /* Adds a clear border around the basket */
+    border-radius: var(--border-radius); /* Rounds the basket panel corners */
+    padding: 1.5rem; /* Adds generous inner spacing */
+    position: sticky; /* Keeps the basket visible while scrolling down the menu on desktop */
+    top: 1.5rem; /* Stops the sticky basket 1.5rem from the top of the viewport */
+} /* Closes the basket-panel block */
+
+.branch-indicator { /* Styles the 'Collecting from: Branch' text inside the basket */
+    font-size: 0.9rem; /* Sets font size */
+    color: var(--text-secondary); /* Uses secondary text colour */
+    margin-bottom: 1rem; /* Adds spacing below the branch indicator */
+    padding-bottom: 0.75rem; /* Adds inner bottom padding */
+    border-bottom: 1px solid var(--border-color); /* Draws a divider line below the branch name */
+} /* Closes the branch-indicator block */
+
+.basket-list { /* Styles the list of items added to the basket */
+    list-style: none; /* Removes default bullet points */
+    margin-bottom: 1rem; /* Adds space below the basket list */
+    max-height: 260px; /* Limits height so the basket doesn't grow too tall */
+    overflow-y: auto; /* Adds a scrollbar if many items are added */
+} /* Closes the basket-list block */
+
+.basket-item { /* Styles each individual item row inside the basket */
+    display: flex; /* Aligns item details on the left and remove button on the right */
+    justify-content: space-between; /* Pushes the remove button to the right edge */
+    align-items: center; /* Vertically centres the item text and remove button */
+    padding: 0.6rem 0; /* Adds top and bottom padding to each row */
+    border-bottom: 1px dashed var(--border-color); /* Separates basket items with a dashed line */
+    gap: 0.5rem; /* Adds space between item name and remove button */
+    font-size: 0.95rem; /* Sets readable text size */
+} /* Closes the basket-item block */
+
+.empty-basket-msg { /* Styles the placeholder message when the basket has 0 items */
+    color: var(--text-secondary); /* Uses muted secondary text colour */
+    font-style: italic; /* Italicises the empty basket message */
+    padding: 0.75rem 0; /* Adds vertical breathing room */
+} /* Closes the empty-basket-msg block */
+
+.remove-item-btn { /* Styles the 'Remove' button next to each basket item */
+    background: transparent; /* Transparent background */
+    border: 1px solid #c92a2a; /* Red border to indicate a destructive/remove action */
+    color: #c92a2a; /* Red text colour */
+    padding: 0.2rem 0.5rem; /* Compact button padding */
+    border-radius: 4px; /* Slightly rounded corners */
+    font-size: 0.8rem; /* Small, tidy font size */
+    font-weight: 600; /* Semi-bold label */
+    cursor: pointer; /* Hand pointer on hover */
+} /* Closes the remove-item-btn block */
+
+body.high-contrast .remove-item-btn { /* Ensures the remove button is clear in High Contrast mode */
+    border-color: #ff8080; /* Light red border against dark background */
+    color: #ff8080; /* Light red text against dark background */
+} /* Closes the high-contrast remove-item-btn block */
+
+.basket-nutrition-row { /* Displays the total calories of all items in the basket */
+    display: flex; /* Aligns label and kcal count on opposite sides */
+    justify-content: space-between; /* Pushes label left and calorie total right */
+    font-size: 0.9rem; /* Slightly smaller than the price row */
+    color: var(--text-secondary); /* Uses secondary text colour */
+    padding-top: 0.5rem; /* Adds space above the calorie row */
+    border-top: 2px solid var(--border-color); /* Draws a solid divider line above the summary */
+} /* Closes the basket-nutrition-row block */
+
+.basket-summary { /* Styles the Total to Pay row */
+    display: flex; /* Places 'Total to Pay' and the £ amount on opposite sides */
+    justify-content: space-between; /* Pushes label left and price right */
+    align-items: center; /* Vertically aligns label and price */
+    font-size: 1.15rem; /* Increases font size for the total row */
+    padding: 0.5rem 0 0.75rem 0; /* Adds vertical padding */
+    margin-bottom: 1rem; /* Adds space above the checkout form */
+    border-bottom: 2px solid var(--border-color); /* Draws a solid line below the total */
+} /* Closes the basket-summary block */
+
+.total-price { /* Styles the £0.00 total amount figure */
+    font-size: 1.35rem; /* Makes the total price extra clear */
+    color: var(--accent-primary); /* Highlights the total price in the accent colour */
+} /* Closes the total-price block */
+
+/* ==================== FORMS, INPUTS & BUTTONS ==================== */
+.form-card { /* Styles the white card wrapper around the Table and Baking forms */
+    background-color: var(--bg-surface); /* White background */
+    border: 2px solid var(--border-color); /* Subtle latte border */
+    border-radius: var(--border-radius); /* Rounded corners */
+    padding: 1.75rem; /* Generous internal padding */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); /* Soft card shadow */
+} /* Closes the form-card block */
+
+.form-card h3 { /* Styles sub-headings inside form cards */
+    margin-bottom: 1.25rem; /* Adds space below the form heading */
+    font-size: 1.3rem; /* Sets heading font size */
+} /* Closes the form-card h3 block */
+
+.booking-form { /* Styles all booking and checkout forms */
+    display: flex; /* Uses Flexbox to stack form rows vertically */
+    flex-direction: column; /* Stacks form groups top to bottom */
+    gap: 1.1rem; /* Adds consistent vertical spacing between form fields */
+} /* Closes the booking-form block */
+
+.form-row { /* Styles two-column input rows on desktop screens */
+    display: grid; /* Uses CSS Grid to place two inputs side by side */
+    grid-template-columns: 1fr 1fr; /* Splits the row into two equal columns */
+    gap: 1.25rem; /* Adds horizontal space between the two columns */
+} /* Closes the form-row block */
+
+.form-group { /* Styles the wrapper around a single label and input field */
+    display: flex; /* Uses Flexbox to stack the label above the input */
+    flex-direction: column; /* Ensures vertical stacking */
+    gap: 0.35rem; /* Adds a small gap between the label and input box */
+} /* Closes the form-group block */
+
+.form-group label { /* Styles all form field labels */
+    font-weight: 600; /* Makes labels semi-bold for clarity */
+    font-size: 0.95rem; /* Sets a clear, readable label size */
+} /* Closes the form-group label block */
+
+.required-text { /* Styles the '(Required)' indicator next to mandatory labels */
+    font-size: 0.8rem; /* Slightly smaller text size */
+    color: var(--accent-primary); /* Uses accent colour while still providing explicit text for screen readers */
+    font-weight: 700; /* Makes the required notice bold */
+} /* Closes the required-text block */
+
+.form-group input, /* Targets all text, email, date, and number inputs */
+.form-group select, /* Targets all dropdown select menus */
+.form-group textarea { /* Targets multi-line text areas */
+    padding: 0.7rem 0.85rem; /* Provides large, accessible click/tap targets */
+    border: 2px solid var(--border-color); /* Adds a visible 2px border around inputs */
+    border-radius: 8px; /* Rounds the input corners */
+    background-color: var(--bg-primary); /* Uses a warm cream input background */
+    color: var(--text-primary); /* Sets dark readable input text */
+    font-family: inherit; /* Inherits the clean sans-serif font from the body */
+    font-size: 1rem; /* Keeps input text at 1rem (16px+) so mobile browsers don't auto-zoom */
+} /* Closes the form inputs block */
+
+.checkbox-grid { /* Styles the grid of accessibility/facility checkboxes on booking forms */
+    display: grid; /* Uses CSS Grid to align checkboxes neatly */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Fits responsive columns */
+    gap: 0.65rem; /* Space between checkbox options */
+    padding: 0.75rem; /* Inner padding */
+    background-color: var(--bg-subtle); /* Soft oat background */
+    border: 1px solid var(--border-color); /* Border around checkbox group */
+    border-radius: 8px; /* Rounded corners */
+} /* Closes the checkbox-grid block */
+
+.checkbox-label { /* Styles each individual checkbox and its text label */
+    display: flex; /* Aligns checkbox input and text side by side */
+    align-items: center; /* Vertically centres checkbox with text */
+    gap: 0.5rem; /* Space between checkbox and label text */
+    font-size: 0.9rem; /* Readable label size */
+    font-weight: 600; /* Semi-bold text */
+    cursor: pointer; /* Hand cursor when hovering anywhere on the label */
+} /* Closes the checkbox-label block */
+
+.checkbox-label input[type="checkbox"] { /* Styles the checkbox square itself */
+    width: 1.15rem; /* Larger accessible checkbox width */
+    height: 1.15rem; /* Larger accessible checkbox height */
+    accent-color: var(--accent-primary); /* Colours the checked box with our copper accent */
+} /* Closes the checkbox input block */
+
+.primary-btn { /* Styles main call-to-action buttons (Add to Order, Confirm Booking) */
+    background-color: var(--accent-primary); /* Fills button with warm copper accent */
+    color: #ffffff; /* Uses white button text */
+    border: none; /* Removes default border */
+    padding: 0.8rem 1.4rem; /* Provides a large 48px+ tall touch target */
+    border-radius: var(--border-radius); /* Rounds button corners */
+    font-size: 1rem; /* Uses full 1rem font size */
+    font-weight: 700; /* Makes button text bold */
+    cursor: pointer; /* Shows pointer hand icon on hover */
+    transition: background-color 0.2s, transform 0.1s; /* Smoothly transitions hover colour */
+} /* Closes the primary-btn block */
+
+.primary-btn:hover { /* Styles primary buttons when hovered */
+    background-color: var(--accent-hover); /* Darkens button colour on hover */
+} /* Closes the primary-btn:hover block */
+
+.secondary-btn { /* Styles secondary buttons (Select This Lesson, Dismiss Notification) */
+    background-color: transparent; /* Uses a transparent background */
+    color: var(--accent-primary); /* Uses the accent colour for text */
+    border: 2px solid var(--accent-primary); /* Uses a 2px accent border */
+    padding: 0.65rem 1.1rem; /* Adds comfortable button padding */
+    border-radius: var(--border-radius); /* Rounds button corners */
+    font-size: 0.95rem; /* Sets readable font size */
+    font-weight: 700; /* Makes button text bold */
+    cursor: pointer; /* Shows hand cursor on hover */
+    transition: all 0.2s; /* Smoothly animates hover state */
+} /* Closes the secondary-btn block */
+
+.secondary-btn:hover { /* Styles secondary buttons when hovered */
+    background-color: var(--accent-primary); /* Fills the button with the accent colour */
+    color: #ffffff; /* Changes text to white on hover */
+} /* Closes the secondary-btn:hover block */
+
+body.high-contrast .secondary-btn:hover { /* Ensures high contrast readability when hovering secondary buttons */
+    color: #000000; /* Sets text to black on yellow fill */
+} /* Closes the high-contrast secondary button override */
+
+.full-width { /* Utility class to make a button span 100% of its container width */
+    width: 100%; /* Sets width to 100% */
+} /* Closes the full-width block */
+
+/* ==================== TABLE SEATING ZONES & BAKING LESSONS GRIDS ==================== */
+.lessons-grid { /* Styles the responsive grid of baking workshop cards and seating zone cards */
+    display: grid; /* Uses CSS Grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Automatically wraps cards on smaller screens */
+    gap: 1.5rem; /* Adds spacing between cards */
+    margin-bottom: 2rem; /* Adds space between the cards and the booking form below */
+} /* Closes the lessons-grid block */
+
+.lesson-card { /* Styles each individual baking workshop card or café seating zone card */
+    background-color: var(--bg-surface); /* White card surface */
+    border: 2px solid var(--border-color); /* Card border */
+    border-radius: var(--border-radius); /* Rounded corners */
+    padding: 1.5rem; /* Inner card padding */
+    display: flex; /* Uses Flexbox to stack content vertically */
+    flex-direction: column; /* Stacks tag, heading, description, list, and button */
+    justify-content: space-between; /* Pushes the action button to the bottom */
+    gap: 0.85rem; /* Vertical spacing between elements inside the card */
+} /* Closes the lesson-card block */
+
+.lesson-tag { /* Styles the skill-level or seating-type badge at the top of each card */
+    align-self: flex-start; /* Keeps the badge sized only to its text content */
+    background-color: var(--bg-subtle); /* Warm oat badge background */
+    border: 1px solid var(--border-color); /* Subtle badge border */
+    color: var(--text-secondary); /* Roasted-coffee text colour */
+    font-size: 0.8rem; /* Small badge font size */
+    font-weight: 700; /* Bold badge text */
+    padding: 0.2rem 0.65rem; /* Compact pill padding */
+    border-radius: 999px; /* Fully rounded pill shape */
+} /* Closes the lesson-tag block */
+
+.lesson-meta { /* Styles the bulleted list of duration, price, and accessibility info */
+    list-style: none; /* Removes default bullets */
+    font-size: 0.9rem; /* Sets legible font size */
+    display: flex; /* Stacks list items vertically */
+    flex-direction: column; /* Ensures vertical list stacking */
+    gap: 0.35rem; /* Adds space between metadata lines */
+    padding: 0.75rem 0; /* Adds top and bottom padding */
+    border-top: 1px solid var(--border-color); /* Adds a top divider line */
+    border-bottom: 1px solid var(--border-color); /* Adds a bottom divider line */
+} /* Closes the lesson-meta block */
+
+/* ==================== NUTRITION & ALLERGENS PAGE TABLES & CARDS ==================== */
+.table-responsive { /* Wraps data tables so they scroll horizontally on small phone screens without breaking layout */
+    width: 100%; /* Takes full container width */
+    overflow-x: auto; /* Enables horizontal scrolling on narrow viewports */
+    background-color: var(--bg-surface); /* Clean surface background */
+    border: 2px solid var(--border-color); /* Table container border */
+    border-radius: var(--border-radius); /* Rounded corners */
+    margin-bottom: 2rem; /* Space below the table */
+} /* Closes the table-responsive block */
+
+.nutrition-table { /* Styles the semantic HTML5 nutrition and milk comparison tables */
+    width: 100%; /* Stretches table across the container */
+    border-collapse: collapse; /* Merges cell borders cleanly */
+    text-align: left; /* Left-aligns text for easy reading */
+    font-size: 0.92rem; /* Sets readable table font size */
+} /* Closes the nutrition-table block */
+
+.nutrition-table caption { /* Styles the accessible table caption */
+    text-align: left; /* Left-aligns caption heading */
+    padding: 1rem 1.25rem; /* Adds padding around caption */
+    font-size: 1.15rem; /* Prominent caption size */
+    font-weight: 700; /* Bold caption text */
+    background-color: var(--bg-subtle); /* Soft oat header background */
+    border-bottom: 2px solid var(--border-color); /* Divider line under caption */
+} /* Closes the nutrition-table caption block */
+
+.nutrition-table th, /* Styles table header cells */
+.nutrition-table td { /* Styles table data cells */
+    padding: 0.85rem 1rem; /* Comfortable cell padding */
+    border-bottom: 1px solid var(--border-color); /* Horizontal divider between rows */
+    vertical-align: middle; /* Vertically centres cell content */
+} /* Closes the th/td block */
+
+.nutrition-table thead th { /* Styles column headers inside <thead> */
+    background-color: var(--bg-subtle); /* Soft background for column headers */
+    font-weight: 700; /* Bold column header text */
+    color: var(--text-primary); /* Primary dark text */
+    border-bottom: 2px solid var(--border-color); /* Thicker border under column headers */
+    white-space: nowrap; /* Prevents column titles from wrapping awkwardly */
+} /* Closes the thead th block */
+
+.nutrition-table tbody tr:hover { /* Highlights a table row when hovered */
+    background-color: var(--bg-subtle); /* Subtle highlight row background */
+} /* Closes the tbody tr:hover block */
+
+/* ==================== FOOTER ==================== */
+.site-footer { /* Styles the bottom footer bar */
+    background-color: var(--bg-header); /* Matches the dark espresso header background */
+    color: #e6d7cc; /* Soft cream text colour */
+    padding: 1.5rem 1.25rem; /* Adds vertical and horizontal padding */
+    margin-top: 3rem; /* Pushes footer away from the last section */
+    text-align: center; /* Centres the footer text */
+    font-size: 0.9rem; /* Slightly smaller footer font size */
+} /* Closes the site-footer block */
+
+.footer-container { /* Styles the inner wrapper of the footer */
+    max-width: 1200px; /* Matches the page max-width */
+    margin: 0 auto; /* Centres the container */
+    display: flex; /* Stacks the footer paragraphs */
+    flex-direction: column; /* Aligns paragraphs vertically */
+    gap: 0.35rem; /* Adds a small gap between lines */
+} /* Closes the footer-container block */
+
+/* ==================== RESPONSIVE DESIGN (MOBILE & TABLET SCREENS) ==================== */
+@media (max-width: 850px) { /* Applies these layout changes when the screen is 850px wide or smaller (tablets & phones) */
+    .order-layout { /* Targets the two-column menu + basket grid */
+        grid-template-columns: 1fr; /* Collapses the menu and basket into a single vertical column on mobile */
+    } /* Closes the responsive order-layout block */
+
+    .basket-panel { /* Targets the basket sidebar on mobile */
+        position: static; /* Disables sticky positioning so it flows naturally below the menu on mobile */
+    } /* Closes the responsive basket-panel block */
+
+    .form-row { /* Targets two-column form rows on mobile */
+        grid-template-columns: 1fr; /* Stacks form inputs into a single full-width column for easier thumb typing */
+    } /* Closes the responsive form-row block */
+
+    .nav-list { /* Targets the 4 main navigation links on mobile */
+        flex-direction: column; /* Stacks the 4 service links vertically so text never squishes on narrow phones */
+    } /* Closes the responsive nav-list block */
+
+    .header-container { /* Targets the top header layout on mobile */
+        flex-direction: column; /* Stacks the logo, branch selector, and accessibility buttons vertically */
+        align-items: flex-start; /* Left-aligns the stacked header items neatly */
+    } /* Closes the responsive header-container block */
+
+    .search-box-wrapper { /* Targets the search input wrapper on mobile */
+        max-width: 100%; /* Lets the search bar span full width on mobile phones */
+    } /* Closes the responsive search-box-wrapper block */
+} /* Closes the @media (max-width: 850px) responsive query */

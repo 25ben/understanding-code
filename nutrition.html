@@ -1,0 +1,223 @@
+<!DOCTYPE html> <!-- Declares that this document is written in HTML5 -->
+<html lang="en"> <!-- Opens the root HTML element and sets the primary language to British/English for screen readers -->
+<head> <!-- Opens the head section containing page metadata and links to external files -->
+    <meta charset="UTF-8"> <!-- Sets the character encoding to UTF-8 so special characters like pound signs (£) display properly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the website scales responsively on mobile phones and desktop screens -->
+    <title>Bean &amp; Brew | Nutrition, Ingredients &amp; Allergen Guide</title> <!-- Sets the page title shown in the browser tab for the Nutrition page -->
+    <link rel="stylesheet" href="styles.css"> <!-- Links our shared external CSS stylesheet (styles.css) to style the webpage -->
+</head> <!-- Closes the head section -->
+<body> <!-- Opens the body section which holds all visible content on the webpage -->
+
+    <a href="#main-content" class="skip-link">Skip to main content</a> <!-- Provides an accessibility link allowing keyboard users to jump straight to the main content -->
+
+    <header class="site-header" role="banner"> <!-- Opens the top header bar with the banner landmark role for assistive technology -->
+        <div class="header-container"> <!-- Container div that centres and spaces the header elements neatly -->
+            <div class="brand"> <!-- Grouping div for the café logo and brand tagline -->
+                <span class="brand-icon" aria-hidden="true">&#9749;</span> <!-- Displays a decorative coffee cup icon and hides it from screen readers so it isn't read aloud awkwardly -->
+                <div> <!-- Inner div to stack the café title and subtitle vertically -->
+                    <h1 class="brand-title">Bean &amp; Brew</h1> <!-- Main heading showing the client's café chain name -->
+                    <p class="brand-subtitle">Artisan Coffee, Kitchen &amp; Bakery School</p> <!-- Subtitle explaining what Bean & Brew offers -->
+                </div> <!-- Closes the inner brand text div -->
+            </div> <!-- Closes the brand grouping div -->
+
+            <div class="location-selector"> <!-- Grouping div for the café branch selector -->
+                <label for="cafe-branch" class="sr-only-mobile">Select Café Branch:</label> <!-- Accessible label linked to the branch dropdown menu -->
+                <select id="cafe-branch" name="cafe-branch" aria-label="Select your Bean and Brew café branch"> <!-- Dropdown allowing customers to choose their local Bean & Brew café -->
+                    <option value="Harrogate Central">Harrogate Central</option> <!-- First café branch option -->
+                    <option value="Leeds Corn Exchange">Leeds Corn Exchange</option> <!-- Second café branch option -->
+                    <option value="York Stonegate">York Stonegate</option> <!-- Third café branch option -->
+                </select> <!-- Closes the branch dropdown menu -->
+            </div> <!-- Closes the location selector div -->
+
+            <div class="accessibility-toolbar" role="region" aria-label="Accessibility controls"> <!-- Grouping div for our 6 accessibility adjustment buttons -->
+                <button type="button" id="contrast-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle WCAG AAA high-contrast colours -->
+                    High Contrast <!-- Visible text inside the high-contrast toggle button -->
+                </button> <!-- Closes the high-contrast toggle button -->
+                <button type="button" id="text-size-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle larger 20px base font sizes -->
+                    Large Text <!-- Visible text inside the large text toggle button -->
+                </button> <!-- Closes the large text toggle button -->
+                <button type="button" id="dyslexia-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle dyslexia-friendly font and wider letter/line spacing -->
+                    Dyslexia Font <!-- Visible text inside the dyslexia font toggle button -->
+                </button> <!-- Closes the dyslexia font toggle button -->
+                <button type="button" id="motion-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to disable animations and smooth scrolling for vestibular sensitivity -->
+                    Reduce Motion <!-- Visible text inside the reduce motion toggle button -->
+                </button> <!-- Closes the reduce motion toggle button -->
+                <button type="button" id="tts-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button that uses the browser's Web Speech API to read the page aloud -->
+                    Read Page Aloud <!-- Visible text inside the text-to-speech button -->
+                </button> <!-- Closes the text-to-speech button -->
+                <button type="button" id="reset-a11y-btn" class="a11y-btn a11y-reset-btn"> <!-- Button to reset all accessibility settings back to default -->
+                    Reset Access <!-- Visible text inside the reset accessibility button -->
+                </button> <!-- Closes the reset accessibility button -->
+            </div> <!-- Closes the accessibility toolbar div -->
+        </div> <!-- Closes the header container div -->
+
+        <nav class="main-nav" aria-label="Main Services Navigation"> <!-- Opens the primary navigation bar linking to each of the 4 pages -->
+            <ul class="nav-list"> <!-- Unordered list holding the navigation links for the four separate pages -->
+                <li class="nav-item"> <!-- List item wrapper for the Pre-Order page link -->
+                    <a href="index.html" class="nav-tab"> <!-- Link pointing to the Pre-Order Drinks & Food page (index.html) -->
+                        1. Pre-Order Drinks &amp; Food <span id="basket-badge" class="badge">0</span> <!-- Link text plus a live counter badge showing items in the basket -->
+                    </a> <!-- Closes the Pre-Order page link -->
+                </li> <!-- Closes the first list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Book a Table page link -->
+                    <a href="table.html" class="nav-tab"> <!-- Link pointing to the separate Book a Table page (table.html) -->
+                        2. Book a Table <!-- Link text for table reservations -->
+                    </a> <!-- Closes the Book a Table page link -->
+                </li> <!-- Closes the second list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Book a Baking Lesson page link -->
+                    <a href="baking.html" class="nav-tab"> <!-- Link pointing to the separate Book a Baking Lesson page (baking.html) -->
+                        3. Book a Baking Lesson <!-- Link text for baking classes -->
+                    </a> <!-- Closes the Book a Baking Lesson page link -->
+                </li> <!-- Closes the third list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Nutrition & Allergens page link -->
+                    <a href="nutrition.html" class="nav-tab active" aria-current="page"> <!-- Active link pointing to the current Nutrition & Allergens page (nutrition.html) -->
+                        4. Nutrition &amp; Allergens <!-- Link text for nutritional data and allergen matrix -->
+                    </a> <!-- Closes the Nutrition & Allergens page link -->
+                </li> <!-- Closes the fourth list item -->
+            </ul> <!-- Closes the navigation list -->
+        </nav> <!-- Closes the main navigation bar -->
+    </header> <!-- Closes the top site header -->
+
+    <main id="main-content" class="main-container"> <!-- Opens the main content area linked to the skip-link -->
+
+        <div id="status-banner" class="status-banner hidden" role="status" aria-live="polite"> <!-- Live notification box that announces confirmations to screen readers and users -->
+            <p id="status-message">Confirmation details will appear here.</p> <!-- Paragraph where JavaScript inserts status messages -->
+            <button type="button" id="close-banner-btn" class="secondary-btn">Dismiss Notification</button> <!-- Button allowing the user to close the confirmation alert -->
+        </div> <!-- Closes the live status banner -->
+
+        <!-- ==================== PAGE 4: NUTRITION, INGREDIENTS & ALLERGEN GUIDE ==================== --> <!-- Section comment marking the Nutrition & Allergens page content -->
+        <section id="section-nutrition" class="service-section" aria-labelledby="page-heading"> <!-- Opens the Nutrition & Allergens content section -->
+            <div class="section-intro"> <!-- Grouping div for the nutrition page heading and introduction -->
+                <h2 id="page-heading">Full Nutrition, Ingredients &amp; Allergen Guide (<span id="current-branch-label">Harrogate Central</span>)</h2> <!-- Main heading for the Nutrition & Allergens page -->
+                <p>In compliance with UK Food Standards Agency (Natasha's Law) regulations, we provide complete macronutrient values, caffeine levels, full ingredient lists, and 14-major-allergen declarations for every drink and bakery item.</p> <!-- Explains Natasha's Law compliance and nutritional transparency -->
+            </div> <!-- Closes the section intro div -->
+
+            <div class="branch-info-strip" aria-label="Dietary reference intake and allergen notice"> <!-- Displays UK reference intake and kitchen safety info -->
+                <span><strong>UK Adult Reference Intake:</strong> Adults need around 2,000 kcal a day</span> <!-- Standard UK calorie statement -->
+                <span><strong>Barista Hygiene:</strong> Separate colour-coded jugs &amp; steam-wand purge for plant milks</span> <!-- Explains barista cross-contamination controls -->
+                <span><strong>Safe Prep:</strong> Sealed gluten-free &amp; nut-free bakery tongs available on request</span> <!-- Explains bakery allergen safety -->
+            </div> <!-- Closes the branch-info-strip div -->
+
+            <div class="controls-row"> <!-- Flex container holding dietary filter buttons on the left and a live ingredient search bar on the right -->
+                <div class="filter-bar" role="group" aria-label="Filter nutrition guide by dietary requirement"> <!-- Toolbar containing dietary and calorie filter buttons -->
+                    <button type="button" class="filter-btn nutrition-filter-btn active" data-diet="all">All Menu Items (10)</button> <!-- Button to show all 10 items -->
+                    <button type="button" class="filter-btn nutrition-filter-btn" data-diet="Vegan">Vegan Suitable</button> <!-- Filters items tagged Vegan -->
+                    <button type="button" class="filter-btn nutrition-filter-btn" data-diet="Nut-Free">Nut-Free</button> <!-- Filters items tagged Nut-Free -->
+                    <button type="button" class="filter-btn nutrition-filter-btn" data-diet="Low Calorie">Under 250 kcal</button> <!-- Filters items with under 250 calories -->
+                    <button type="button" class="filter-btn nutrition-filter-btn" data-diet="Caffeine-Free">Caffeine-Free / Food</button> <!-- Filters items with 0mg caffeine -->
+                </div> <!-- Closes the dietary filter bar div -->
+
+                <div class="search-box-wrapper"> <!-- Wrapper for the live ingredient and allergen search input -->
+                    <label for="nutrition-search" class="sr-only-mobile">Search Ingredients:</label> <!-- Accessible label for the search bar -->
+                    <input type="search" id="nutrition-search" class="search-input" placeholder="Search item, ingredient, or allergen..."> <!-- Live search input that filters both the table and cards -->
+                </div> <!-- Closes the search-box-wrapper div -->
+            </div> <!-- Closes the controls-row div -->
+
+            <div class="table-responsive" role="region" aria-label="Scrollable nutritional data table" tabindex="0"> <!-- Scrollable container so keyboard and mobile users can pan across the data table -->
+                <table class="nutrition-table"> <!-- Semantic HTML5 table presenting macronutrients and allergens -->
+                    <caption>Menu Macronutrients, Caffeine &amp; Allergen Matrix (Per Standard Serving)</caption> <!-- Accessible table title read aloud by screen readers -->
+                    <thead> <!-- Table header group -->
+                        <tr> <!-- Header row -->
+                            <th scope="col">Menu Item</th> <!-- Column 1: Item name and category -->
+                            <th scope="col">Energy (kcal / kJ)</th> <!-- Column 2: Calories and kilojoules -->
+                            <th scope="col">Protein</th> <!-- Column 3: Protein in grams -->
+                            <th scope="col">Carbs (Sugars)</th> <!-- Column 4: Carbohydrates and sugars in grams -->
+                            <th scope="col">Fat (Sat Fat)</th> <!-- Column 5: Total fat and saturated fat in grams -->
+                            <th scope="col">Fibre &amp; Salt</th> <!-- Column 6: Dietary fibre and salt in grams -->
+                            <th scope="col">Caffeine</th> <!-- Column 7: Caffeine content in milligrams -->
+                            <th scope="col">Dietary &amp; Allergens</th> <!-- Column 8: Explicit dietary and allergen badges -->
+                        </tr> <!-- Closes header row -->
+                    </thead> <!-- Closes table header group -->
+                    <tbody id="nutrition-table-body"> <!-- Table body dynamically populated by script.js -->
+                        <!-- Rows are populated by renderNutritionPage() in script.js --> <!-- Note explaining that script.js populates this table -->
+                    </tbody> <!-- Closes table body -->
+                </table> <!-- Closes the nutritional data table -->
+            </div> <!-- Closes the scrollable table wrapper -->
+
+            <div class="section-intro"> <!-- Sub-heading intro for the detailed ingredient cards -->
+                <h3>Full Ingredients List, Sourcing Origins &amp; Kitchen Prep Notes</h3> <!-- Heading for the ingredient breakdown cards -->
+                <p>Every card below lists the exact ingredients in descending weight order alongside roast/bakery origin and cross-contamination guidance.</p> <!-- Explains how ingredients are listed -->
+            </div> <!-- Closes the sub-heading intro -->
+
+            <div id="nutrition-cards-grid" class="lessons-grid" aria-label="Detailed ingredient and allergen cards"> <!-- Responsive grid holding individual ingredient breakdown cards -->
+                <!-- Ingredient cards are populated by renderNutritionPage() in script.js --> <!-- Note explaining that script.js populates these cards -->
+            </div> <!-- Closes the ingredient cards grid -->
+
+            <div class="table-responsive" role="region" aria-label="Plant and dairy milk comparison table" tabindex="0"> <!-- Scrollable container for the milk comparison table -->
+                <table class="nutrition-table"> <!-- Semantic table comparing milk options offered on the Pre-Order page -->
+                    <caption>Barista Dairy &amp; Plant-Based Milk Comparison (Per 100ml Steamed / Chilled)</caption> <!-- Table caption -->
+                    <thead> <!-- Table header group -->
+                        <tr> <!-- Header row -->
+                            <th scope="col">Milk Option</th> <!-- Column 1: Milk type -->
+                            <th scope="col">Energy (kcal)</th> <!-- Column 2: Calories per 100ml -->
+                            <th scope="col">Protein (g)</th> <!-- Column 3: Protein per 100ml -->
+                            <th scope="col">Sugars (g)</th> <!-- Column 4: Sugars per 100ml -->
+                            <th scope="col">Fat (g)</th> <!-- Column 5: Fat per 100ml -->
+                            <th scope="col">Allergen Status</th> <!-- Column 6: Allergens present -->
+                            <th scope="col">Sustainability &amp; Carbon Rating</th> <!-- Column 7: Environmental footprint -->
+                        </tr> <!-- Closes header row -->
+                    </thead> <!-- Closes table header group -->
+                    <tbody> <!-- Static comparison rows for the 5 milk options -->
+                        <tr> <!-- Row 1: Barista Oat Milk -->
+                            <td><strong>Barista Oat Milk (Default)</strong></td> <!-- Milk name -->
+                            <td>59 kcal</td> <!-- Calories -->
+                            <td>1.0g</td> <!-- Protein -->
+                            <td>3.4g (Natural oat sugars)</td> <!-- Sugars -->
+                            <td>3.0g</td> <!-- Fat -->
+                            <td><span class="allergen-pill">Contains Oats (Gluten)</span> <span class="dietary-pill">100% Vegan</span></td> <!-- Allergens -->
+                            <td>Very Low Carbon (0.31 kg CO2e / L &bull; British Oats)</td> <!-- Sustainability -->
+                        </tr> <!-- Closes Row 1 -->
+                        <tr> <!-- Row 2: Organic Yorkshire Whole Milk -->
+                            <td><strong>Organic Yorkshire Whole Milk</strong></td> <!-- Milk name -->
+                            <td>66 kcal</td> <!-- Calories -->
+                            <td>3.4g</td> <!-- Protein -->
+                            <td>4.7g (Lactose)</td> <!-- Sugars -->
+                            <td>3.7g</td> <!-- Fat -->
+                            <td><span class="allergen-pill">Contains Milk (Dairy)</span></td> <!-- Allergens -->
+                            <td>Local Yorkshire Dales Free-Range Pasture Herd (15 miles)</td> <!-- Sustainability -->
+                        </tr> <!-- Closes Row 2 -->
+                        <tr> <!-- Row 3: Organic Skimmed Milk -->
+                            <td><strong>Organic Skimmed Milk</strong></td> <!-- Milk name -->
+                            <td>35 kcal</td> <!-- Calories -->
+                            <td>3.6g</td> <!-- Protein -->
+                            <td>5.0g (Lactose)</td> <!-- Sugars -->
+                            <td>0.1g</td> <!-- Fat -->
+                            <td><span class="allergen-pill">Contains Milk (Dairy)</span> <span class="dietary-pill">Fat-Free</span></td> <!-- Allergens -->
+                            <td>Local Yorkshire Dales Free-Range Pasture Herd (15 miles)</td> <!-- Sustainability -->
+                        </tr> <!-- Closes Row 3 -->
+                        <tr> <!-- Row 4: Barista Soy Milk -->
+                            <td><strong>Barista Soy Milk</strong></td> <!-- Milk name -->
+                            <td>42 kcal</td> <!-- Calories -->
+                            <td>3.3g</td> <!-- Protein -->
+                            <td>2.1g</td> <!-- Sugars -->
+                            <td>1.9g</td> <!-- Fat -->
+                            <td><span class="allergen-pill">Contains Soya</span> <span class="dietary-pill">Vegan &amp; Gluten-Free</span></td> <!-- Allergens -->
+                            <td>Low Carbon (0.42 kg CO2e / L &bull; Non-GMO European Soya)</td> <!-- Sustainability -->
+                        </tr> <!-- Closes Row 4 -->
+                        <tr> <!-- Row 5: Barista Coconut Milk -->
+                            <td><strong>Barista Coconut Milk</strong></td> <!-- Milk name -->
+                            <td>29 kcal</td> <!-- Calories -->
+                            <td>0.2g</td> <!-- Protein -->
+                            <td>1.8g</td> <!-- Sugars -->
+                            <td>2.2g</td> <!-- Fat -->
+                            <td><span class="dietary-pill">Vegan, Gluten-Free &amp; Nut-Free</span></td> <!-- Allergens -->
+                            <td>Low Carbon (0.38 kg CO2e / L &bull; Fairtrade Certified)</td> <!-- Sustainability -->
+                        </tr> <!-- Closes Row 5 -->
+                    </tbody> <!-- Closes table body -->
+                </table> <!-- Closes milk comparison table -->
+            </div> <!-- Closes scrollable table wrapper -->
+
+        </section> <!-- Closes Section 4: Nutrition & Allergens -->
+
+    </main> <!-- Closes the main content container -->
+
+    <footer class="site-footer" role="contentinfo"> <!-- Opens the page footer with the contentinfo landmark role -->
+        <div class="footer-container"> <!-- Container that aligns the footer text neatly -->
+            <p><strong>Bean &amp; Brew Cafés Ltd</strong> &mdash; Harrogate Central &bull; Leeds Corn Exchange &bull; York Stonegate</p> <!-- Displays the café chain name and locations -->
+            <p>Open Daily: 7:30 AM &ndash; 6:00 PM | WCAG 2.1 AA Accessible Prototype built by Mantis Solutions (T Level Digital Software Development)</p> <!-- Displays opening hours and project attribution -->
+        </div> <!-- Closes the footer container -->
+    </footer> <!-- Closes the footer element -->
+
+    <script src="script.js"></script> <!-- Loads our shared external JavaScript file (script.js) to handle interactivity -->
+</body> <!-- Closes the body element -->
+</html> <!-- Closes the HTML document -->
+

@@ -1,0 +1,191 @@
+<!DOCTYPE html> <!-- Declares that this document is written in HTML5 -->
+<html lang="en"> <!-- Opens the root HTML element and sets the primary language to British/English for screen readers -->
+<head> <!-- Opens the head section containing page metadata and links to external files -->
+    <meta charset="UTF-8"> <!-- Sets the character encoding to UTF-8 so special characters like pound signs (£) display properly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the website scales responsively on mobile phones and desktop screens -->
+    <title>Bean &amp; Brew | Pre-Order Drinks &amp; Food</title> <!-- Sets the page title shown in the browser tab for the Pre-Order page -->
+    <link rel="stylesheet" href="styles.css"> <!-- Links our shared external CSS stylesheet (styles.css) to style the webpage -->
+</head> <!-- Closes the head section -->
+<body> <!-- Opens the body section which holds all visible content on the webpage -->
+
+    <a href="#main-content" class="skip-link">Skip to main content</a> <!-- Provides an accessibility link allowing keyboard users to jump straight to the main content -->
+
+    <header class="site-header" role="banner"> <!-- Opens the top header bar with the banner landmark role for assistive technology -->
+        <div class="header-container"> <!-- Container div that centres and spaces the header elements neatly -->
+            <div class="brand"> <!-- Grouping div for the café logo and brand tagline -->
+                <span class="brand-icon" aria-hidden="true">&#9749;</span> <!-- Displays a decorative coffee cup icon and hides it from screen readers so it isn't read aloud awkwardly -->
+                <div> <!-- Inner div to stack the café title and subtitle vertically -->
+                    <h1 class="brand-title">Bean &amp; Brew</h1> <!-- Main heading showing the client's café chain name -->
+                    <p class="brand-subtitle">Artisan Coffee, Kitchen &amp; Bakery School</p> <!-- Subtitle explaining what Bean & Brew offers -->
+                </div> <!-- Closes the inner brand text div -->
+            </div> <!-- Closes the brand grouping div -->
+
+            <div class="location-selector"> <!-- Grouping div for the café branch selector -->
+                <label for="cafe-branch" class="sr-only-mobile">Select Café Branch:</label> <!-- Accessible label linked to the branch dropdown menu -->
+                <select id="cafe-branch" name="cafe-branch" aria-label="Select your Bean and Brew café branch"> <!-- Dropdown allowing customers to choose their local Bean & Brew café -->
+                    <option value="Harrogate Central">Harrogate Central</option> <!-- First café branch option -->
+                    <option value="Leeds Corn Exchange">Leeds Corn Exchange</option> <!-- Second café branch option -->
+                    <option value="York Stonegate">York Stonegate</option> <!-- Third café branch option -->
+                </select> <!-- Closes the branch dropdown menu -->
+            </div> <!-- Closes the location selector div -->
+
+            <div class="accessibility-toolbar" role="region" aria-label="Accessibility controls"> <!-- Grouping div for our 6 accessibility adjustment buttons -->
+                <button type="button" id="contrast-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle WCAG AAA high-contrast colours -->
+                    High Contrast <!-- Visible text inside the high-contrast toggle button -->
+                </button> <!-- Closes the high-contrast toggle button -->
+                <button type="button" id="text-size-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle larger 20px base font sizes -->
+                    Large Text <!-- Visible text inside the large text toggle button -->
+                </button> <!-- Closes the large text toggle button -->
+                <button type="button" id="dyslexia-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to toggle dyslexia-friendly font and wider letter/line spacing -->
+                    Dyslexia Font <!-- Visible text inside the dyslexia font toggle button -->
+                </button> <!-- Closes the dyslexia font toggle button -->
+                <button type="button" id="motion-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button to disable animations and smooth scrolling for vestibular sensitivity -->
+                    Reduce Motion <!-- Visible text inside the reduce motion toggle button -->
+                </button> <!-- Closes the reduce motion toggle button -->
+                <button type="button" id="tts-toggle" class="a11y-btn" aria-pressed="false"> <!-- Button that uses the browser's Web Speech API to read the page aloud -->
+                    Read Page Aloud <!-- Visible text inside the text-to-speech button -->
+                </button> <!-- Closes the text-to-speech button -->
+                <button type="button" id="reset-a11y-btn" class="a11y-btn a11y-reset-btn"> <!-- Button to reset all accessibility settings back to default -->
+                    Reset Access <!-- Visible text inside the reset accessibility button -->
+                </button> <!-- Closes the reset accessibility button -->
+            </div> <!-- Closes the accessibility toolbar div -->
+        </div> <!-- Closes the header container div -->
+
+        <nav class="main-nav" aria-label="Main Services Navigation"> <!-- Opens the primary navigation bar linking to each of the 4 pages -->
+            <ul class="nav-list"> <!-- Unordered list holding the navigation links for the four separate pages -->
+                <li class="nav-item"> <!-- List item wrapper for the Pre-Order page link -->
+                    <a href="index.html" class="nav-tab active" aria-current="page"> <!-- Active link pointing to the Pre-Order Drinks & Food page (index.html) -->
+                        1. Pre-Order Drinks &amp; Food <span id="basket-badge" class="badge">0</span> <!-- Link text plus a live counter badge showing items in the basket -->
+                    </a> <!-- Closes the Pre-Order page link -->
+                </li> <!-- Closes the first list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Book a Table page link -->
+                    <a href="table.html" class="nav-tab"> <!-- Link pointing to the separate Book a Table page (table.html) -->
+                        2. Book a Table <!-- Link text for table reservations -->
+                    </a> <!-- Closes the Book a Table page link -->
+                </li> <!-- Closes the second list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Book a Baking Lesson page link -->
+                    <a href="baking.html" class="nav-tab"> <!-- Link pointing to the separate Book a Baking Lesson page (baking.html) -->
+                        3. Book a Baking Lesson <!-- Link text for baking classes -->
+                    </a> <!-- Closes the Book a Baking Lesson page link -->
+                </li> <!-- Closes the third list item -->
+                <li class="nav-item"> <!-- List item wrapper for the Nutrition & Allergens page link -->
+                    <a href="nutrition.html" class="nav-tab"> <!-- Link pointing to the dedicated Nutrition & Allergens page (nutrition.html) -->
+                        4. Nutrition &amp; Allergens <!-- Link text for nutritional data and allergen matrix -->
+                    </a> <!-- Closes the Nutrition & Allergens page link -->
+                </li> <!-- Closes the fourth list item -->
+            </ul> <!-- Closes the navigation list -->
+        </nav> <!-- Closes the main navigation bar -->
+    </header> <!-- Closes the top site header -->
+
+    <main id="main-content" class="main-container"> <!-- Opens the main content area linked to the skip-link -->
+
+        <div id="status-banner" class="status-banner hidden" role="status" aria-live="polite"> <!-- Live notification box that announces confirmations to screen readers and users -->
+            <p id="status-message">Confirmation details will appear here.</p> <!-- Paragraph where JavaScript inserts order confirmation text -->
+            <button type="button" id="close-banner-btn" class="secondary-btn">Dismiss Notification</button> <!-- Button allowing the user to close the confirmation alert -->
+        </div> <!-- Closes the live status banner -->
+
+        <!-- ==================== PAGE 1: PRE-ORDER DRINKS & FOOD ==================== --> <!-- Section comment marking the Pre-Order page content -->
+        <section id="section-order" class="service-section" aria-labelledby="page-heading"> <!-- Opens the Pre-Order content section -->
+            <div class="section-intro"> <!-- Grouping div for the section heading and instructions -->
+                <h2 id="page-heading">Pre-Order Drinks &amp; Food for Express Collection</h2> <!-- Main heading for the pre-order page -->
+                <p>Skip the morning queue! Browse our freshly roasted drinks and artisan bakery menu below, check live calorie and allergen badges, and collect from our dedicated Express Barista Counter.</p> <!-- Helpful instructions for the customer -->
+            </div> <!-- Closes the section intro div -->
+
+            <div class="branch-info-strip" aria-label="Selected branch details"> <!-- Displays live details for the currently selected Bean & Brew café branch -->
+                <span><strong>Selected Branch:</strong> <span id="branch-strip-name">Harrogate Central</span></span> <!-- Shows the active branch name -->
+                <span><strong>Express Collection Prep Time:</strong> ~5 to 10 Mins</span> <!-- Shows average barista preparation speed -->
+                <span><strong>Accessibility:</strong> Step-free collection counter &amp; hearing loop installed</span> <!-- Highlights physical accessibility at the café -->
+            </div> <!-- Closes the branch-info-strip div -->
+
+            <div class="controls-row"> <!-- Flex container holding category filters on the left and a live search bar on the right -->
+                <div class="filter-bar" role="group" aria-label="Filter menu by category or dietary need"> <!-- Toolbar containing category and dietary filter buttons -->
+                    <button type="button" class="filter-btn active" data-category="all">All Items (10)</button> <!-- Button to show all 10 menu items -->
+                    <button type="button" class="filter-btn" data-category="Hot Drinks">Hot Drinks</button> <!-- Button to filter only hot drinks -->
+                    <button type="button" class="filter-btn" data-category="Iced Drinks">Iced Drinks</button> <!-- Button to filter only iced drinks -->
+                    <button type="button" class="filter-btn" data-category="Bakery & Food">Bakery &amp; Lunch</button> <!-- Button to filter pastries and lunch items -->
+                    <button type="button" class="filter-btn" data-category="Vegan">Vegan Suitable</button> <!-- Button to filter items suitable for vegans -->
+                </div> <!-- Closes the filter bar div -->
+
+                <div class="search-box-wrapper"> <!-- Wrapper for the live keyword search input -->
+                    <label for="menu-search" class="sr-only-mobile">Search Menu:</label> <!-- Accessible label for the search bar -->
+                    <input type="search" id="menu-search" class="search-input" placeholder="Search drinks, food, or allergens..."> <!-- Live search input that filters cards as the user types -->
+                </div> <!-- Closes the search-box-wrapper div -->
+            </div> <!-- Closes the controls-row div -->
+
+            <div class="order-layout"> <!-- Two-column responsive grid layout holding the menu on the left and basket on the right -->
+                <div id="menu-grid" class="menu-grid" aria-label="Menu items"> <!-- Container where JavaScript dynamically renders the café menu cards -->
+                    <!-- Menu cards are populated by script.js --> <!-- Note explaining that script.js fills this container -->
+                </div> <!-- Closes the menu grid div -->
+
+                <aside class="basket-panel" aria-labelledby="basket-heading"> <!-- Sidebar panel holding the customer's collection order basket -->
+                    <h3 id="basket-heading">Your Collection Basket</h3> <!-- Heading for the basket sidebar -->
+                    <p class="branch-indicator">Collecting from: <strong id="current-branch-label">Harrogate Central</strong></p> <!-- Displays which café branch the customer is ordering from -->
+
+                    <ul id="basket-list" class="basket-list"> <!-- Unordered list holding the added items in the basket -->
+                        <li class="empty-basket-msg">Your basket is currently empty. Add a drink or snack to begin!</li> <!-- Default message shown when no items are in the basket -->
+                    </ul> <!-- Closes the basket items list -->
+
+                    <div class="basket-nutrition-row"> <!-- Shows the combined calorie count of all items in the basket -->
+                        <span>Estimated Order Energy:</span> <!-- Label for total basket calories -->
+                        <strong id="basket-calories">0 kcal</strong> <!-- Live calorie counter updated by script.js -->
+                    </div> <!-- Closes the basket-nutrition-row div -->
+
+                    <div class="basket-summary"> <!-- Grouping div for the total price display -->
+                        <span>Total to Pay:</span> <!-- Label for total cost -->
+                        <strong id="basket-total" class="total-price">&pound;0.00</strong> <!-- Displays the calculated total price in pounds -->
+                    </div> <!-- Closes the basket summary div -->
+
+                    <form id="checkout-form" class="booking-form"> <!-- Form for submitting the pre-order collection details -->
+                        <div class="form-group"> <!-- Wrapper for the customer name input field -->
+                            <label for="order-name">Your Full Name <span class="required-text">(Required)</span></label> <!-- Accessible label clearly stating the field is required without relying on colour alone -->
+                            <input type="text" id="order-name" name="order-name" required placeholder="e.g. Alex Taylor" autocomplete="name"> <!-- Text input for the customer's name -->
+                        </div> <!-- Closes the customer name form group -->
+
+                        <div class="form-group"> <!-- Wrapper for the customer mobile/email contact -->
+                            <label for="order-contact">Mobile Number or Email for Collection Alert <span class="required-text">(Required)</span></label> <!-- Label for collection alert contact -->
+                            <input type="text" id="order-contact" name="order-contact" required placeholder="e.g. 07700 900123 or alex@example.com"> <!-- Input for SMS/email ready notification -->
+                        </div> <!-- Closes the contact form group -->
+
+                        <div class="form-group"> <!-- Wrapper for the collection time slot dropdown -->
+                            <label for="pickup-time">Collection Time Slot <span class="required-text">(Required)</span></label> <!-- Accessible label for the pickup time selector -->
+                            <select id="pickup-time" name="pickup-time" required> <!-- Dropdown menu for choosing when to collect the order -->
+                                <option value="">-- Choose a 15-minute window --</option> <!-- Default prompt option -->
+                                <option value="In 10-15 mins (ASAP Express)">In 10-15 mins (ASAP Express)</option> <!-- First pickup time option -->
+                                <option value="In 30 mins">In 30 mins</option> <!-- Second pickup time option -->
+                                <option value="In 45 mins">In 45 mins</option> <!-- Third pickup time option -->
+                                <option value="In 1 hour">In 1 hour</option> <!-- Fourth pickup time option -->
+                            </select> <!-- Closes the pickup time dropdown -->
+                        </div> <!-- Closes the collection time form group -->
+
+                        <div class="form-group"> <!-- Wrapper for cup sustainability choice -->
+                            <label for="cup-choice">Cup &amp; Packaging Preference</label> <!-- Label for reusable or compostable cup option -->
+                            <select id="cup-choice" name="cup-choice"> <!-- Dropdown for eco-friendly packaging choices -->
+                                <option value="Compostable Plant-Fibre Cup">Standard Compostable Plant-Fibre Cup</option> <!-- Default compostable cup -->
+                                <option value="Bringing My Own Reusable Cup">Bringing My Own Reusable Cup (Barista Rinse)</option> <!-- Reusable cup option -->
+                                <option value="Ceramic Mug (Drinking In Café)">Ceramic Mug (Drinking In Café)</option> <!-- Ceramic mug option -->
+                            </select> <!-- Closes the cup preference dropdown -->
+                        </div> <!-- Closes the cup preference form group -->
+
+                        <div class="form-group"> <!-- Wrapper for dietary or allergy notes -->
+                            <label for="order-notes">Allergies, Cross-Contamination or Access Notes (Optional)</label> <!-- Label for optional allergy or access notes -->
+                            <input type="text" id="order-notes" name="order-notes" placeholder="e.g. Severe nut allergy, bring to table"> <!-- Text input for custom preparation instructions -->
+                        </div> <!-- Closes the allergy notes form group -->
+
+                        <button type="submit" id="place-order-btn" class="primary-btn full-width">Place Collection Order</button> <!-- Submit button to finalise the pre-order -->
+                    </form> <!-- Closes the checkout form -->
+                </aside> <!-- Closes the basket sidebar panel -->
+            </div> <!-- Closes the two-column order layout -->
+        </section> <!-- Closes Section 1: Pre-Order Drinks & Food -->
+
+    </main> <!-- Closes the main content container -->
+
+    <footer class="site-footer" role="contentinfo"> <!-- Opens the page footer with the contentinfo landmark role -->
+        <div class="footer-container"> <!-- Container that aligns the footer text neatly -->
+            <p><strong>Bean &amp; Brew Cafés Ltd</strong> &mdash; Harrogate Central &bull; Leeds Corn Exchange &bull; York Stonegate</p> <!-- Displays the café chain name and locations -->
+            <p>Open Daily: 7:30 AM &ndash; 6:00 PM | WCAG 2.1 AA Accessible Prototype built by Mantis Solutions (T Level Digital Software Development)</p> <!-- Displays opening hours and project attribution -->
+        </div> <!-- Closes the footer container -->
+    </footer> <!-- Closes the footer element -->
+
+    <script src="script.js"></script> <!-- Loads our shared external JavaScript file (script.js) to handle interactivity -->
+</body> <!-- Closes the body element -->
+</html> <!-- Closes the HTML document -->
